@@ -14,8 +14,11 @@
         */
 
         // This function below displays text
-        
-        echo "Hello World"
+
+        echo "Hello World";
+
+        //Can also echo html in php
+        echo "<h1>This is inside HTML but it only prints the text</h1>";
     ?>
 </body>
 </html>
