@@ -14,6 +14,7 @@
         echo $numbers[1] . "<br>";
 
         // Associative Arrays - cna rename array keys(index)
+        // can refer to data with labels not just index value'
         $names = array("first_name" => "Kevin", "last_name" => 'Guertin');
         print_r($names);
         echo "<br>";
