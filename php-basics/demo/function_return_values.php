@@ -15,7 +15,7 @@
        $result = add_nums(3, 3);
        echo "the sum is " . $result . "<br>";
 
-       $result = add_nums(100, 98);
+       $result = add_nums(100, $result);
        echo "the sum is now " . $result . "<br>";
     
     ?>
