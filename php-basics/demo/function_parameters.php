@@ -21,7 +21,7 @@
 
         add_nums(5, 1);
         echo "<br>";
-        add_nums();
+        add_nums(); // adds defaults;
     
     ?>
 </body>
