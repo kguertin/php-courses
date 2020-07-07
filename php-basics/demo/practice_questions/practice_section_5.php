@@ -21,6 +21,8 @@
         echo "<br>";
         array_push($list, 'feets');
         print_r($list);
+        echo "<br>";
+        echo in_array('feets', $list);
 
     ?>
 </body>
