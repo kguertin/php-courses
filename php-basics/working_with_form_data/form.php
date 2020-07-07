@@ -3,7 +3,10 @@
 // super global variable is associative array
 
 if(isset($_POST["submit"])) {
-    print_r($_POST);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    echo "username: ". $username . " Password: " . $password;
 }
 ?>
 
