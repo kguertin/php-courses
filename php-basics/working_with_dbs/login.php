@@ -1,5 +1,13 @@
 <?php
-print_r($_POST);
+    if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        
+    }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +20,7 @@ print_r($_POST);
 </head>
 <body>
     <div class="container">
-        <div class="col-6">
+        <div class="col-sm-6">
             <form action="login.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username:</label>
