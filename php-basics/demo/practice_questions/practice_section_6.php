@@ -23,7 +23,7 @@
 <body>
     <form action="practice_section_6.php" method="POST">
         <input type="text" name="bestPG" placeholder="Best NBA PG">
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="SUBMIT">
     </form>
 </body>
 </html>
