@@ -3,7 +3,23 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        
+        // mysqli_connect(server, user, password, db)
+        $connection = mysqli_connect('localhost', 'root', '', 'loginapp');
+
+        if($connection) {
+            echo 'We are connected';
+        } else {
+            die("Database connection failed.");
+        }
+
+        // //Should maybe user isset bellow
+        //     if($username && $password){
+        //         echo $username . "<br>" . $password;
+        //     } else {
+        //         echo "Please enter a username and password.";
+        //     }
+
+
     }
 
 
