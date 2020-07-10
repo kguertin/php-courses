@@ -1,6 +1,27 @@
 <?php include "db.php"; ?>
 <?php
 
+function createRows(){
+    if(isset($_POST['submit'])){
+        global $connection;
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $query = "INSERT INTO users(username,password)";
+        $query .= "VALUES ('$username', '$password')";
+
+       $result = mysqli_query($connection, $query);
+
+       if(!$result) {
+           die('Query Failed' . mysqli_error());
+       } else {
+           echo "Record Created";
+       }
+
+    }
+}
+
 function showAllData() {
     global $connection; // this points to global connection variable, not local scope.
 
@@ -19,35 +40,43 @@ function showAllData() {
 }
 
 function updateTable() {
-    global $connection;
-    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $id = $_POST['id'];
-    
-    $query = "UPDATE users SET ";
-    $query .= "username = '$username', ";
-    $query .= "password = '$password' ";
-    $query .= "WHERE id = $id ";
+    if(isset($_POST['submit'])){
+        global $connection;
+        
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $id = $_POST['id'];
+        
+        $query = "UPDATE users SET ";
+        $query .= "username = '$username', ";
+        $query .= "password = '$password' ";
+        $query .= "WHERE id = $id ";
 
-    $result = mysqli_query($connection, $query);
-    if(!$result){
-        die('Query Failed' . mysqli_error($connection));
+        $result = mysqli_query($connection, $query);
+        if(!$result){
+            die('Query Failed' . mysqli_error($connection));
+        } else {
+            echo "Record Updated";
+        }
     }
 }
 
 function deleteRows() {
-    global $connection;
-    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $id = $_POST['id'];
-    
-    $query = "DELETE FROM users ";
-    $query .= "WHERE id = $id ";
+    if(isset($_POST['submit'])){
+        global $connection;
+        
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $id = $_POST['id'];
+        
+        $query = "DELETE FROM users ";
+        $query .= "WHERE id = $id ";
 
-    $result = mysqli_query($connection, $query);
-    if(!$result){
-        die('Query Failed' . mysqli_error($connection));
+        $result = mysqli_query($connection, $query);
+        if(!$result){
+            die('Query Failed' . mysqli_error($connection));
+        } else {
+            echo "Record Deleted";
+        }
     }
 }

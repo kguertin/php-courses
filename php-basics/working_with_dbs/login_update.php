@@ -1,10 +1,6 @@
 <?php include "db.php"; ?>
 <?php include "functions.php"; ?>
-<?php
-    if(isset($_POST['submit'])){
-       updateTable(); 
-    }
-?>
+<?php updateTable(); ?>
 
 
 <!DOCTYPE html>
@@ -18,6 +14,7 @@
 <body>
     <div class="container">
         <div class="col-sm-6">
+        <h1 class="text-center">Update</h1>
             <form action="login_update.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username:</label>
@@ -34,7 +31,7 @@
                         ?>
                     </select>
                 </div>
-                <input class="btn btn-primary" type="submit" name="submit" value="Update">
+                <input class="btn btn-primary" type="submit" name="submit" value="UPDATE">
             </form>
         </div>
     </div>
