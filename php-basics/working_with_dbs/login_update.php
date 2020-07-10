@@ -1,15 +1,5 @@
-<?php 
-include "db.php"; // this is like js/React, including functions
-
-
-        $query = "SELECT * FROM users";
-
-        $result = mysqli_query($connection, $query);
-
-       if(!$result) {
-           die('Query Failed' . mysqli_error());
-       }
-?>
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +22,10 @@ include "db.php"; // this is like js/React, including functions
                     <input type="password" name="password" class="form-control" id="password">
                 </div>
                 <div class="form-group">
-                    <select name="" id="">
-                        <option value="">1</option>
+                    <select name="id" id="">
+                        <?php
+                        showAllData();
+                        ?>
                     </select>
                 </div>
                 <input class="btn btn-primary" type="submit" name="submit" value="Update">
