@@ -1,26 +1,11 @@
-<?php include "db.php"; ?> 
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
 <?php
     if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        if($connection) {
-            echo 'We are connected';
-        } else {
-            die("Database connection failed.");
-        }
-
-        $query = "INSERT INTO users(username,password)";
-        $query .= "VALUES ('$username', '$password')";
-
-       $result = mysqli_query($connection, $query);
-
-       if(!$result) {
-           die('Query Failed' . mysqli_error());
-       }
-
+       deleteRows(); 
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +18,7 @@
 <body>
     <div class="container">
         <div class="col-sm-6">
-            <form action="login_create.php" method="POST">
+            <form action="login_delete.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" class="form-control" id="username">
@@ -42,7 +27,14 @@
                     <label for="password">Password:</label>
                     <input type="password" name="password" class="form-control" id="password">
                 </div>
-                <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+                <div class="form-group">
+                    <select name="id" id="">
+                        <?php
+                        showAllData();
+                        ?>
+                    </select>
+                </div>
+                <input class="btn btn-primary" type="submit" name="submit" value="Delete">
             </form>
         </div>
     </div>
