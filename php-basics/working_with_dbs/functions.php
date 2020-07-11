@@ -11,10 +11,17 @@ function createRows(){
         $username = mysqli_escape_string($connection, $username);
         $password = mysqli_escape_string($connection, $password);
 
+        $hashFormat = "$2y$10$";
+        $salt = "iusesomecrazystrings22";
+
+        $hashF_and_salt = $hashFormat . $salt;
+
+        $password = crypt($password, $hashF_and_salt);
+
         $query = "INSERT INTO users(username,password)";
         $query .= "VALUES ('$username', '$password')";
 
-       $result = mysqli_query($connection, $query);
+        $result = mysqli_query($connection, $query);
 
        if(!$result) {
            die('Query Failed' . mysqli_error());
