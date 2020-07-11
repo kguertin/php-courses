@@ -16,6 +16,14 @@
     <title>Cookies</title>
 </head>
 <body>
-    
+    <?php
+        if(isset($_COOKIE["cookieName"])){  
+            $savedCookie = $_COOKIE["cookieName"];
+            echo $savedCookie;
+        } else {
+            $savedCookie = "";
+        }
+
+    ?>
 </body>
 </html>
