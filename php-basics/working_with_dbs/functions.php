@@ -8,6 +8,9 @@ function createRows(){
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        $username = mysqli_escape_string($connection, $username);
+        $password = mysqli_escape_string($connection, $password);
+
         $query = "INSERT INTO users(username,password)";
         $query .= "VALUES ('$username', '$password')";
 
@@ -65,11 +68,15 @@ function updateTable() {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $id = $_POST['id'];
+
+        $username = mysqli_escape_string($connection, $username);
+        $password = mysqli_escape_string($connection, $password);
         
         $query = "UPDATE users SET ";
         $query .= "username = '$username', ";
         $query .= "password = '$password' ";
         $query .= "WHERE id = $id ";
+
 
         $result = mysqli_query($connection, $query);
         if(!$result){
@@ -87,6 +94,9 @@ function deleteRows() {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $id = $_POST['id'];
+
+        $username = mysqli_escape_string($connection, $username);
+        $password = mysqli_escape_string($connection, $password);
         
         $query = "DELETE FROM users ";
         $query .= "WHERE id = $id ";
