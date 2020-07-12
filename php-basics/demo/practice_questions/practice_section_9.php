@@ -19,6 +19,7 @@
     }
 
     session_start();
+    
     if(isset($_COOKIE["bestPG"])){
         $_SESSION['cookie'] = $_COOKIE['bestPG'];
     }
@@ -29,8 +30,6 @@
         echo "This is the session: " . "<br>";
         print_r($_SESSION);
     }
-    
-
 
 ?>
 
