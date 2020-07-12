@@ -11,7 +11,6 @@ class Dog {
         echo "Snoot status: " . $this->snoot;
         echo "<br>";
         echo "A Pupper? " . $this->pupper;
-
     }
 }
 
