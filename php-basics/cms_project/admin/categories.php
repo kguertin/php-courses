@@ -16,7 +16,25 @@
                             <small>Author</small>
                         </h1>
                         <div class="col-xs-6">
-                            <form action="" method="">
+                        <?php
+                            if(isset($_POST['submit'])){
+                                $cat_title = $_POST["cat_title"];
+                            }
+                            if($cat_title == "" || empty($cat_title)){
+                                echo "This field should not be empty";
+                            } else {
+                                $query = "INSERT INTO categories(cat_title) ";
+                                $query .= "VALUES('$cat_title')";
+
+                                $create_category = mysqli_query($connection, $query);
+    
+                                if(!$create_category){
+                                    die('Query Failed' .  mysqli_error($connection));
+                                }
+                            }
+                        ?>
+
+                            <form action="" method="POST">
                                 <div class="form-group">
                                     <label for="cat_title">Category</label>
                                     <input type="text" class="form-control" name="cat_title" id="cat_title">
@@ -43,13 +61,13 @@
 
                                 <?php
                                 while($row = mysqli_fetch_assoc($select_catagories)){
-                                $cat_id = $row["id"];
-                                $cat_title = $row["cat_title"];
-                                
-                                echo "<tr>";
-                                echo "<td>{$cat_id}</td>";
-                                echo "<td>{$cat_title}</td>";
-                                echo "</tr>";
+                                    $cat_id = $row["id"];
+                                    $cat_title = $row["cat_title"];
+                                    
+                                    echo "<tr>";
+                                    echo "<td>{$cat_id}</td>";
+                                    echo "<td>{$cat_title}</td>";
+                                    echo "</tr>";
                                 } ?>
                                 </tbody>
                             </table>
