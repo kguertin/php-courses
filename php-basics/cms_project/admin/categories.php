@@ -36,11 +36,34 @@
 
                             <form action="" method="POST">
                                 <div class="form-group">
-                                    <label for="cat_title">Category</label>
+                                    <label for="cat_title">Add Category</label>
                                     <input type="text" class="form-control" name="cat_title" id="cat_title">
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
+                                </div>
+                            </form>
+                            <form action="" method="POST">
+                                <div class="form-group">
+                                    <label for="update_cat_title"> Update Category</label>
+                                    <?php
+                                    if(isset($_GET['edit'])){
+                                      $cat_id_edit = $_GET["edit"];
+
+                                      $query = "SELECT * FROM categories WHERE id = $cat_id_edit";
+                                      $get_edit_categories = mysqli_query($connection, $query);
+      
+                                      while($row = mysqli_fetch_assoc($get_edit_categories)){
+                                          $cat_id = $row["id"];
+                                          $cat_title = $row["cat_title"];
+                                          ?>
+                                          <input value="<?php if(isset($cat_title)) echo $cat_title; ?>" type="text" class="form-control" name="cat_title">
+
+                                      <?php }
+                                    }?>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-primary" type="submit" name="submit" value="Add Update">
                                 </div>
                             </form>
                         </div>
@@ -66,6 +89,7 @@
                                     echo "<td>{$cat_id}</td>";
                                     echo "<td>{$cat_title}</td>";
                                     echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
+                                    echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
                                     echo "</tr>";
                                 } ?>
 
