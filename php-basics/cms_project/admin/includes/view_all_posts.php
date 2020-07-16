@@ -37,7 +37,8 @@
             echo "<td><img width='100' src='../images/$post_image' alt='Post Image'></td>";
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
-            echo "<td>{$post_date}</td>";      
+            echo "<td>{$post_date}</td>";
+            echo "<td><a href='posts.php?source=edit_post&pid={$post_id}'>Edit</a></td>";      
             echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
             
             echo "</tr>";
