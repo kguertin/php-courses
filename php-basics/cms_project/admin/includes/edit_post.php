@@ -35,12 +35,11 @@
         if(empty($post_image)) {
             $query = "SELECT post_image FROM posts WHERE post_id = $post_id_edit ";
             $select_image = mysqli_query($connection, $query);
+
             confirm_query($select_image);
 
             $result = mysqli_fetch_assoc($select_image);
             $post_image = $result["post_image"];
-
-            
         }
 
         $query = "UPDATE posts SET ";
@@ -55,9 +54,9 @@
         $query .= "WHERE post_id = {$post_id_edit} ";
 
         $update_post = mysqli_query($connection, $query);
-        // header("Location: posts.php");
         
         confirm_query($update_post);
+        header("Location: posts.php");
 
     }
 ?>

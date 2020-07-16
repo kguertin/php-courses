@@ -32,7 +32,15 @@
             echo "<td>{$post_id}</td>";
             echo "<td>{$post_author}</td>";
             echo "<td>{$post_title}</td>";
-            echo "<td>{$post_category_id}</td>";
+
+            // Get category title matching category id 
+            $query = "SELECT * FROM categories WHERE id = $post_category_id";
+            $select_category_id = mysqli_query($connection, $query);
+      
+            $category_result = mysqli_fetch_assoc($select_category_id);
+            $cat_title = $category_result["cat_title"];
+
+            echo "<td>{$cat_title}</td>";
             echo "<td>{$post_status}</td>";
             echo "<td><img width='100' src='../images/$post_image' alt='Post Image'></td>";
             echo "<td>{$post_tags}</td>";
