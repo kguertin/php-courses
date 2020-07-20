@@ -41,7 +41,13 @@
             // $category_result = mysqli_fetch_assoc($select_category_id);
             // $cat_title = $category_result["cat_title"];
             
-            echo "<td>Some title</td>";
+            $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
+            $select_post_comments = mysqli_query($connection, $query);
+            $post_result = mysqli_fetch_assoc($select_post_comments);
+            $post_id = $post_result["post_id"];
+            $post_title  = $post_result['post_title'];
+
+            echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
             echo "<td>{$comment_date}</td>";
             echo "<td><a href='posts.php?source=edit_post&pid={$post_id}'>Approve</a></td>";      
             echo "<td><a href='posts.php?delete={$post_id}'>Unapprove</a></td>";    
