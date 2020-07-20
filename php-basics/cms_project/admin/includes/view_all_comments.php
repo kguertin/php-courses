@@ -43,6 +43,7 @@
             
             $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
             $select_post_comments = mysqli_query($connection, $query);
+
             $post_result = mysqli_fetch_assoc($select_post_comments);
             $post_id = $post_result["post_id"];
             $post_title  = $post_result['post_title'];
@@ -51,7 +52,7 @@
             echo "<td>{$comment_date}</td>";
             echo "<td><a href='posts.php?source=edit_post&pid={$post_id}'>Approve</a></td>";      
             echo "<td><a href='posts.php?delete={$post_id}'>Unapprove</a></td>";    
-            echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+            echo "<td><a href='comments.php?delete={$comment_id}'>Delete</a></td>";
             
             echo "</tr>";
         }
@@ -65,13 +66,13 @@
 
 <?php
     if(isset($_GET["delete"])){
-        $delete_post_id = $_GET["delete"];
+        $delete_comment_id = $_GET["delete"];
 
-        $query = "DELETE FROM posts where post_id = {$delete_post_id} ";
+        $query = "DELETE FROM comments where comment_id = {$delete_comment_id} ";
         $delete_query = mysqli_query($connection, $query);
 
         confirm_query($delete_query);
 
-        header("Location: posts.php");
+        header("Location: comments.php");
     }
 ?>
