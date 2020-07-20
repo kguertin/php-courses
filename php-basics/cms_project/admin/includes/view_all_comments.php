@@ -10,7 +10,6 @@
             <th>Date</th>
             <th>Approve</th>
             <th>Unapprove</th>
-            <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -42,11 +41,10 @@
             // $category_result = mysqli_fetch_assoc($select_category_id);
             // $cat_title = $category_result["cat_title"];
             
-            echo "<td>''</td>";
+            echo "<td>Some title</td>";
             echo "<td>{$comment_date}</td>";
             echo "<td><a href='posts.php?source=edit_post&pid={$post_id}'>Approve</a></td>";      
-            echo "<td><a href='posts.php?delete={$post_id}'>Unapprove</a></td>";
-            echo "<td><a href='posts.php?source=edit_post&pid={$post_id}'>Edit</a></td>";      
+            echo "<td><a href='posts.php?delete={$post_id}'>Unapprove</a></td>";    
             echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
             
             echo "</tr>";

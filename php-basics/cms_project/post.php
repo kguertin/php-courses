@@ -43,11 +43,40 @@
                 <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 <hr>
                 <p><?php echo $post_content; ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
 
             <?php } ?>
+
+            <?php
+                if(isset($_POST["create_comment"])){
+                    echo $_POST["comment_author"];
+                }
+
+
+            ?>
+
+            <!-- Comment Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form action="" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" class="form-control" name="comment_author">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" name="comment_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Your Comment</label>
+                        <textarea class="form-control" id="comment" name="comment_content" rows="3"></textarea>
+                    </div>
+                    <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <hr>
 
                             <!-- Posted Comments -->
 
