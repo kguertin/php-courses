@@ -1,27 +1,27 @@
 <?php
-    if(isset($_POST["create_post"])) {
-        $post_title = $_POST["post_title"];
-        $post_category_id = $_POST["post_category"];
-        $post_author = $_POST["post_author"];
-        $post_status = $_POST["post_status"];
+    if(isset($_POST["create_user"])) {
+        $user_first_name = $_POST["user_first_name"];
+        $user_last_name = $_POST["user_last_name"];
+        $user_role = $_POST["user_role"];
 
-        $post_image = $_FILES["post_image"]["name"];
-        $post_image_temp = $_FILES["post_image"]["tmp_name"]; // this creates a temp location
+        // $post_image = $_FILES["post_image"]["name"];
+        // $post_image_temp = $_FILES["post_image"]["tmp_name"]; // this creates a temp location
 
-        $post_tags = $_POST["post_tags"];
-        $post_content = $_POST["post_content"];
-        $post_date  = date('d-m-y');
-        // $post_comment_count = 1;
+        $user_email = $_POST["user_email"];
+        $username = $_POST["username"];
+        $user_password = $_POST["user_password"];
 
-        move_uploaded_file($post_image_temp, "../images/$post_image"); // Where we save the file
+        // move_uploaded_file($post_image_temp, "../images/$post_image"); // Where we save the file
 
-        $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) "; 
+        $query = "INSERT INTO users(user_first_name, user_last_name, user_role, username, user_email, user_password) "; 
 
-        $query .= "VALUES ({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}' ) ";
+        $query .= "VALUES ('{$user_first_name}', '{$user_last_name}', '{$user_role}', '{$user_email}', '{$username}', '{$user_password}' ) ";
 
-        $add_post = mysqli_query($connection, $query);
+        $add_user = mysqli_query($connection, $query);
 
-        confirm_query($add_post);
+        confirm_query($add_user);
+
+        
     }
 
 ?>
@@ -38,20 +38,10 @@
     </div>
 
     <div class="form-group">
-        <select name="post_category" id="">
-            <?php
-                $query = "SELECT * FROM users";
-                $get_users = mysqli_query($connection, $query);
-
-                confirm_query($get_users);
-
-                while($row = mysqli_fetch_assoc($get_users)){
-                    $user_id = $row["user_id"];
-                    $user_role = $row["user_role"];
-
-                    echo "<option value='{$user_id}'>{$user_role}</option>";
-                }
-            ?>
+        <select name="user_role" id="">
+            <option value="subscriber">Select Options</option>
+            <option value="admin">Admin</option>
+            <option value="subscriber">Subscriber</option>
         </select>
     </div>
 

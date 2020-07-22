@@ -97,6 +97,24 @@
     </div>
 
     <div class="form-group">
+        <select name="post_category" id="">
+            <?php
+                $query = "SELECT * FROM users";
+                $get_users = mysqli_query($connection, $query);
+
+                confirm_query($get_users);
+
+                while($row = mysqli_fetch_assoc($get_users)){
+                    $user_id = $row["user_id"];
+                    $user_role = $row["user_role"];
+
+                    echo "<option value='{$user_id}'>{$user_role}</option>";
+                }
+            ?>
+        </select>
+    </div>
+
+    <div class="form-group">
         <img width="100" src="../images/<?php echo $post_image; ?>" alt="Post Image">
         <input type="file" class="form-control" name="post_image" id="post_image">
     </div>
