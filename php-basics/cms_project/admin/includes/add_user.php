@@ -21,7 +21,7 @@
 
         confirm_query($add_user);
 
-        
+        header("Location: users.php");
     }
 
 ?>

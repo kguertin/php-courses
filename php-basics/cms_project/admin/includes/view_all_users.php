@@ -33,7 +33,7 @@
             echo "<td>{$user_role}</td>";
             echo "<td><a href='#'>Approve</a></td>";      
             echo "<td><a href='#'>Unapprove</a></td>";    
-            echo "<td><a href='#'>Delete</a></td>";
+            echo "<td><a href='users.php?delete=$user_id'>Delete</a></td>";
             echo "</tr>";
             
         }
@@ -70,13 +70,13 @@
     }
 
     if(isset($_GET["delete"])){
-        $delete_comment_id = $_GET["delete"];
+        $delete_user_id = $_GET["delete"];
 
-        $query = "DELETE FROM comments where comment_id = {$delete_comment_id} ";
+        $query = "DELETE FROM users where user_id = {$delete_user_id} ";
         $delete_query = mysqli_query($connection, $query);
 
         confirm_query($delete_query);
 
-        header("Location: comments.php");
+        header("Location: users.php");
     }
 ?>
