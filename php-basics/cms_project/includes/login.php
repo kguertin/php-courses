@@ -4,6 +4,22 @@
 if(isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+
+    // Cleans data and protects against sql injection
+    $username = mysqli_real_escape_string($connection, $username);
+    $password = mysqli_real_escape_string($connection, $password);
+
+    $query = "SELECT * FROM users WHERE username = '{$username}' ";
+    $select_user_query = mysqli_query($connection, $query);
+
+    if(!$select_user_query) {
+        die("Query failed" . mysqli_error($connection));
+    }
+
+    while($row = mysqli_fetch_assoc($select_user_query)) {
+        
+    }
+
 };
 
 ?>
