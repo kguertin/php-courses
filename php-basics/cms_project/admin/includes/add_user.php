@@ -13,7 +13,7 @@
 
         // move_uploaded_file($post_image_temp, "../images/$post_image"); // Where we save the file
 
-        $query = "INSERT INTO users(user_first_name, user_last_name, user_role, username, user_email, user_password) "; 
+        $query = "INSERT INTO users(user_first_name, user_last_name, user_role, user_email, username, user_password) "; 
 
         $query .= "VALUES ('{$user_first_name}', '{$user_last_name}', '{$user_role}', '{$user_email}', '{$username}', '{$user_password}' ) ";
 
