@@ -18,29 +18,29 @@
         }
     }
 
-    if(isset($_POST["create_user"])) {
+    if(isset($_POST["edit_user"])) {
         $user_first_name = $_POST["user_first_name"];
         $user_last_name = $_POST["user_last_name"];
         $user_role = $_POST["user_role"];
-
-        // $post_image = $_FILES["post_image"]["name"];
-        // $post_image_temp = $_FILES["post_image"]["tmp_name"]; // this creates a temp location
-
         $user_email = $_POST["user_email"];
         $username = $_POST["username"];
         $user_password = $_POST["user_password"];
 
-        // move_uploaded_file($post_image_temp, "../images/$post_image"); // Where we save the file
 
-        $query = "INSERT INTO users(user_first_name, user_last_name, user_role, username, user_email, user_password) "; 
-
-        $query .= "VALUES ('{$user_first_name}', '{$user_last_name}', '{$user_role}', '{$user_email}', '{$username}', '{$user_password}' ) ";
-
-        $add_user = mysqli_query($connection, $query);
-
-        confirm_query($add_user);
-
-        header("Location: users.php");
+            $query = "UPDATE users SET ";
+            $query .= "user_first_name = '{$user_first_name}', ";
+            $query .= "user_last_name = '{$user_last_name}', ";
+            $query .= "user_role= '{$user_role}', "; 
+            $query .= "username = '{$username}', ";
+            $query .= "user_email = '{$user_email}', ";
+            $query .= "user_password = '{$user_password}' ";
+            $query .= "WHERE user_id = {$edit_user_id} ";
+    
+            $update_user = mysqli_query($connection, $query);
+            
+            confirm_query($update_user);
+            header("Location: users.php");
+    
     }
 
 ?>

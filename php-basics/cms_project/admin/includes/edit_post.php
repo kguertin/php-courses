@@ -5,30 +5,14 @@
     $query = "SELECT * FROM posts WHERE post_id = {$post_id_edit}";
     $select_posts = mysqli_query($connection, $query);
     
-    while($row = mysqli_fetch_assoc($select_posts)){
-        $post_id = $row["post_id"];
-        $post_author = $row["post_author"];
-        $post_title = $row["post_title"];
-        $post_category_id = $row["post_category_id"];
-        $post_status = $row["post_status"];
-        $post_image = $row["post_image"];
-        $post_content = $row["post_content"];
-        $post_date = $row["post_date"];
-        $post_tags = $row["post_tags"];
-        $post_comment_count = $row["post_comment_count"];
-
-    }
 
     if(isset($_POST['update_post'])){
-
-        $post_author = $_POST['post_author'];
-        $post_title = $_POST['post_title'];
-        $post_category_id = $_POST["post_category"];
-        $post_status = $_POST["post_status"];
-        $post_image = $_FILES['post_image']['name'];
-        $post_image_temp = $_FILES['post_image']['tmp_name'];
-        $post_content = $_POST["post_content"];
-        $post_tags = $_POST["post_tags"];
+        $user_first_name = $_POST["user_first_name"];
+        $user_last_name = $_POST["user_last_name"];
+        $user_role = $_POST["user_role"];
+        $user_email = $_POST["user_email"];
+        $username = $_POST["username"];
+        $user_password = $_POST["user_password"];
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
