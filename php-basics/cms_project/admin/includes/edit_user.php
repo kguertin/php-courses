@@ -1,136 +1,72 @@
 <?php
-    if(isset($_GET['pid'])){
-        $post_id_edit = $_GET['pid'];
+
+    if(isset($_GET['edit_user'])){
+        $edit_user_id = $_GET['edit_user'];
     }
-    $query = "SELECT * FROM posts WHERE post_id = {$post_id_edit}";
-    $select_posts = mysqli_query($connection, $query);
     
-    while($row = mysqli_fetch_assoc($select_posts)){
-        $post_id = $row["post_id"];
-        $post_author = $row["post_author"];
-        $post_title = $row["post_title"];
-        $post_category_id = $row["post_category_id"];
-        $post_status = $row["post_status"];
-        $post_image = $row["post_image"];
-        $post_content = $row["post_content"];
-        $post_date = $row["post_date"];
-        $post_tags = $row["post_tags"];
-        $post_comment_count = $row["post_comment_count"];
+    if(isset($_POST["create_user"])) {
+        $user_first_name = $_POST["user_first_name"];
+        $user_last_name = $_POST["user_last_name"];
+        $user_role = $_POST["user_role"];
 
+        // $post_image = $_FILES["post_image"]["name"];
+        // $post_image_temp = $_FILES["post_image"]["tmp_name"]; // this creates a temp location
+
+        $user_email = $_POST["user_email"];
+        $username = $_POST["username"];
+        $user_password = $_POST["user_password"];
+
+        // move_uploaded_file($post_image_temp, "../images/$post_image"); // Where we save the file
+
+        $query = "INSERT INTO users(user_first_name, user_last_name, user_role, username, user_email, user_password) "; 
+
+        $query .= "VALUES ('{$user_first_name}', '{$user_last_name}', '{$user_role}', '{$user_email}', '{$username}', '{$user_password}' ) ";
+
+        $add_user = mysqli_query($connection, $query);
+
+        confirm_query($add_user);
+
+        header("Location: users.php");
     }
 
-    if(isset($_POST['update_post'])){
-
-        $post_author = $_POST['post_author'];
-        $post_title = $_POST['post_title'];
-        $post_category_id = $_POST["post_category"];
-        $post_status = $_POST["post_status"];
-        $post_image = $_FILES['post_image']['name'];
-        $post_image_temp = $_FILES['post_image']['tmp_name'];
-        $post_content = $_POST["post_content"];
-        $post_tags = $_POST["post_tags"];
-
-        move_uploaded_file($post_image_temp, "../images/$post_image");
-
-        if(empty($post_image)) {
-            $query = "SELECT post_image FROM posts WHERE post_id = $post_id_edit ";
-            $select_image = mysqli_query($connection, $query);
-
-            confirm_query($select_image);
-
-            $result = mysqli_fetch_assoc($select_image);
-            $post_image = $result["post_image"];
-        }
-
-        $query = "UPDATE posts SET ";
-        $query .= "post_title = '{$post_title}', ";
-        $query .= "post_category_id = '{$post_category_id}', ";
-        $query .= "post_date = now(), ";
-        $query .= "post_author = '{$post_author}', ";
-        $query .= "post_status = '{$post_status}', ";
-        $query .= "post_tags = '{$post_tags}', ";
-        $query .= "post_content = '{$post_content}', ";
-        $query .= "post_image = '{$post_image}' ";
-        $query .= "WHERE post_id = {$post_id_edit} ";
-
-        $update_post = mysqli_query($connection, $query);
-        
-        confirm_query($update_post);
-
-    }
 ?>
-
 
 <form action="" method="POST" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="post_title">Post Title</label>
-        <input value="<?php echo $post_title; ?>" type="text" class="form-control" name="post_title" id="post_title">
+        <label for="user_first_name">First Name</label>
+        <input type="text" class="form-control" name="user_first_name" id="user_first_name">
     </div>
 
     <div class="form-group">
-        <select name="post_category" id="">
-            <?php
-                $query = "SELECT * FROM categories";
-                $get_edit_categories = mysqli_query($connection, $query);
-
-                confirm_query($get_edit_categories);
-
-                while($row = mysqli_fetch_assoc($get_edit_categories)){
-                    $cat_id = $row["id"];
-                    $cat_title = $row["cat_title"];
-
-                    echo "<option value='{$cat_id}'>{$cat_title}</option>";
-                }
-            ?>
-        </select>
-    </div>
-
-
-    <div class="form-group">
-        <label for="post_author">Post Author</label>
-        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="post_author" id="post_author">
+        <label for="user_last_name">Last Name</label>
+        <input type="text" class="form-control" name="user_last_name" id="user_last_name">
     </div>
 
     <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status" id="post_status">
-    </div>
-
-    <div class="form-group">
-        <select name="post_category" id="">
-            <?php
-                $query = "SELECT * FROM users";
-                $get_users = mysqli_query($connection, $query);
-
-                confirm_query($get_users);
-
-                while($row = mysqli_fetch_assoc($get_users)){
-                    $user_id = $row["user_id"];
-                    $user_role = $row["user_role"];
-
-                    echo "<option value='{$user_id}'>{$user_role}</option>";
-                }
-            ?>
+        <select name="user_role" id="">
+            <option value="subscriber">Select Options</option>
+            <option value="admin">Admin</option>
+            <option value="subscriber">Subscriber</option>
         </select>
     </div>
 
     <div class="form-group">
-        <img width="100" src="../images/<?php echo $post_image; ?>" alt="Post Image">
-        <input type="file" class="form-control" name="post_image" id="post_image">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username">
     </div>
 
     <div class="form-group">
-        <label for="post_tags">Post Tags</label>
-        <input value="<?php echo $post_tags; ?>" type="text" class="form-control" name="post_tags" id="post_tags">
+        <label for="user_email">email</label>
+        <input type="email" class="form-control" name="user_email" id="user_email">
     </div>
 
     <div class="form-group">
-        <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="post_content" cols="30" rows="10"><?php echo $post_content; ?></textarea>
+        <label for="user_password">Password</label>
+        <input type="password" class="form-control" name="user_password" id="user_password">
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="update_post" value="Update Post">
+        <input type="submit" class="btn btn-primary" name="edit_user" value="Edit User">
     </div>
 
 
