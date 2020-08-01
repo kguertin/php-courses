@@ -16,10 +16,21 @@ if(isset($_POST['login'])) {
         die("Query failed" . mysqli_error($connection));
     }
 
-    while($row = mysqli_fetch_assoc($select_user_query)) {
-        
+    $query_user_table = mysqli_fetch_array($select_user_query);
+    $db_id = $query_user_table['user_id'];
+    $db_first_name = $query_user_table['user_first_name'];
+    $db_last_name = $query_user_table['user_last_name'];
+    $db_role = $query_user_table['user_role'];
+    $db_username = $query_user_table['username'];
+    $db_password = $query_user_table['user_password'];
+
+
+    if($username !== $db_username && $password !== $db_password){
+        header("Location: ../index.php");
+    } else if ($username == $db_username && $password == $db_password) {
+        header("Location: ../admin"); 
+    } else {
+        header("Location: ../index.php");
     }
-
-};
-
+}
 ?>
