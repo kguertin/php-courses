@@ -1,7 +1,23 @@
 <?php include "includes/header.php"; ?>
-<?php if(isset($_SESSION['username'])){
+<?php 
+    if(isset($_SESSION['username'])){
+        $username =$_SESSION['username'];
 
-} ?>
+    $query = "SELECT * FROM users WHERE username = '{$username}' ";
+    $select_user_profile = mysqli_query($connection, $query);
+
+    $user_data = mysqli_fetch_array($select_user_profile);
+
+    $user_id = $user_data["user_id"];
+    $username = $user_data["username"]; 
+    $user_password = $user_data["user_password"];
+    $user_first_name = $user_data["user_first_name"]; 
+    $user_last_name = $user_data["user_last_name"];
+    $user_email = $user_data["user_email"];
+    $user_image = $user_data["user_image"];
+    $user_role = $user_data["user_role"];
+    } 
+?>
 
     <div id="wrapper">
 
@@ -63,7 +79,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="edit_user" value="Edit User">
+        <input type="submit" class="btn btn-primary" name="edit_user" value="Update Profile">
     </div>
 </form>
 
