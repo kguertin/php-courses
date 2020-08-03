@@ -20,30 +20,30 @@
 ?>
 
 <?php 
-        if(isset($_POST["update_user"])) {
-            $user_first_name = $_POST["user_first_name"];
-            $user_last_name = $_POST["user_last_name"];
-            $user_role = $_POST["user_role"];
-            $user_email = $_POST["user_email"];
-            $username = $_POST["username"];
-            $user_password = $_POST["user_password"];
-    
-    
-            $query = "UPDATE users SET ";
-            $query .= "user_first_name = '{$user_first_name}', ";
-            $query .= "user_last_name = '{$user_last_name}', ";
-            $query .= "user_role= '{$user_role}', "; 
-            $query .= "username = '{$username}', ";
-            $query .= "user_email = '{$user_email}', ";
-            $query .= "user_password = '{$user_password}' ";
-            $query .= "WHERE username = '{$username}' ";
-    
-            $update_user = mysqli_query($connection, $query);
-            
-            confirm_query($update_user);
-            header("Location: users.php");
+    if(isset($_POST["update_user"])) {
+        $user_first_name = $_POST["user_first_name"];
+        $user_last_name = $_POST["user_last_name"];
+        $user_role = $_POST["user_role"];
+        $user_email = $_POST["user_email"];
+        $username = $_POST["username"];
+        $user_password = $_POST["user_password"];
+
+
+        $query = "UPDATE users SET ";
+        $query .= "user_first_name = '{$user_first_name}', ";
+        $query .= "user_last_name = '{$user_last_name}', ";
+        $query .= "user_role= '{$user_role}', "; 
+        $query .= "username = '{$username}', ";
+        $query .= "user_email = '{$user_email}', ";
+        $query .= "user_password = '{$user_password}' ";
+        $query .= "WHERE username = '{$username}' ";
+
+        $update_user = mysqli_query($connection, $query);
         
-        }
+        confirm_query($update_user);
+        header("Location: users.php");
+    
+    }
 ?>
 
     <div id="wrapper">
