@@ -6,7 +6,7 @@
     $select_posts = mysqli_query($connection, $query);
     $post_data = mysqli_fetch_assoc($select_posts);
     $post_title = $post_data["post_title"];
-    $post_category_id = $post_data["post_category"];
+    $post_category_id = $post_data["post_category_id"];
     $post_author = $post_data["post_author"];
     $post_status = $post_data["post_status"];
     $post_tags = $post_data["post_tags"];
@@ -51,6 +51,8 @@
         $update_post = mysqli_query($connection, $query);
         
         confirm_query($update_post);
+
+        echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$post_id_edit}'>View Post</a> or <a href='posts.php?p_id={$post_id_edit}'>View All Posts</a></p>" ;
 
     }
 ?>
