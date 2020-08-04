@@ -4,15 +4,26 @@
     }
     $query = "SELECT * FROM posts WHERE post_id = {$post_id_edit}";
     $select_posts = mysqli_query($connection, $query);
-    
+    $post_data = mysqli_fetch_assoc($select_posts);
+    $post_title = $post_data["post_title"];
+    $post_category_id = $post_data["post_category"];
+    $post_author = $post_data["post_author"];
+    $post_status = $post_data["post_status"];
+    $post_tags = $post_data["post_tags"];
+    $post_content = $post_data["post_content"];
 
     if(isset($_POST['update_post'])){
-        $user_first_name = $_POST["user_first_name"];
-        $user_last_name = $_POST["user_last_name"];
-        $user_role = $_POST["user_role"];
-        $user_email = $_POST["user_email"];
-        $username = $_POST["username"];
-        $user_password = $_POST["user_password"];
+        $post_title = $_POST["post_title"];
+        $post_category_id = $_POST["post_category"];
+        $post_author = $_POST["post_author"];
+        $post_status = $_POST["post_status"];
+
+        $post_image = $_FILES["post_image"]["name"];
+        $post_image_temp = $_FILES["post_image"]["tmp_name"]; // this creates a temp location
+
+        $post_tags = $_POST["post_tags"];
+        $post_content = $_POST["post_content"];
+        $post_date  = date('d-m-y');
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -92,7 +103,7 @@
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="post_content" cols="30" rows="10"><?php echo $post_content; ?></textarea>
+        <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $post_content; ?></textarea>
     </div>
 
     <div class="form-group">
