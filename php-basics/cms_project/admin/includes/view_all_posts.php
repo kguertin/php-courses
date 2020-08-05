@@ -1,11 +1,36 @@
+<?php
+    if(isset($_POST['checkBoxArray'])){
+        $bulk_options = $_POST['bulk_options'];
+        foreach($_POST['checkBoxArray'] as $post_id){
+            switch($bulk_options){
+                case 'published':
+                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_id";
+                    $update_post_status = mysqli_query($connection, $query);
+                    confirm_query($update_post_status);
+                    break;
+                case 'draft':
+                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_id";
+                    $delete_selected_posts = mysqli_query($connection, $query);
+                    confirm_query($delete_selected_posts);
+                    break;
+                case 'delete':
+                $query = "DELETE FROM posts WHERE post_id = $post_id";
+                    $update_post_status = mysqli_query($connection, $query);
+                    confirm_query($update_post_status);
+                    break;
+            }
+        }
+    }
+?>
+
 <form action="" method="POST">
 <table class="table table-bordered table-hover">
-    <div id="bulkOptionsCOntainer" class="col-xs-4">
-        <select class='form-control' name="" id="">
+    <div id="bulkOptionsCOntainer" class="col-xs-4" id="bulkOptionsContainer">
+        <select class='form-control' name="bulk_options" id=''>
             <option value="">Select Options</option>
-            <option value="">Publish</option>
-            <option value="">Draft</option>
-            <option value="">Delete</option>
+            <option value="published">Publish</option>
+            <option value="draft">Draft</option>
+            <option value="delete">Delete</option>
         </select>
     </div>
     <div class="col-xs-4">
