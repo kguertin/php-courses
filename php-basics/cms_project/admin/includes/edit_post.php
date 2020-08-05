@@ -1,10 +1,11 @@
 <?php
-    if(isset($_GET['pid'])){
-        $post_id_edit = $_GET['pid'];
+    if(isset($_GET['p_id'])){
+        $post_id_edit = $_GET['p_id'];
     }
     $query = "SELECT * FROM posts WHERE post_id = {$post_id_edit}";
     $select_posts = mysqli_query($connection, $query);
     $post_data = mysqli_fetch_assoc($select_posts);
+
     $post_title = $post_data["post_title"];
     $post_category_id = $post_data["post_category_id"];
     $post_author = $post_data["post_author"];
