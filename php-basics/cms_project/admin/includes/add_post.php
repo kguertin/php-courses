@@ -23,7 +23,9 @@
 
         confirm_query($add_post);
 
-        header("Location: posts.php");
+        $new_post_id = mysqli_insert_id($connection);
+
+        echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$new_post_id}'>View Post</a> or <a href='posts.php?p_id={$new_post_id}'>View All Posts</a></p>" ;
     }
 
 ?>
