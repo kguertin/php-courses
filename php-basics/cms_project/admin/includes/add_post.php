@@ -22,6 +22,8 @@
         $add_post = mysqli_query($connection, $query);
 
         confirm_query($add_post);
+
+        header("Location: posts.php");
     }
 
 ?>
@@ -33,7 +35,7 @@
     </div>
 
     <div class="form-group">
-        <select name="post_category" id="">
+        <select class='form-control' name="post_category" id="">
             <?php
                 $query = "SELECT * FROM categories";
                 $get_edit_categories = mysqli_query($connection, $query);
@@ -56,8 +58,11 @@
     </div>
 
     <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status" id="post_status">
+        <select class='form-control' name="post_status" id="post_status">
+            <option value="draft">Select Options</option>
+            <option value="published">Publish</option>
+            <option value="draft">Draft</option>
+        </select>
     </div>
 
     <div class="form-group">
