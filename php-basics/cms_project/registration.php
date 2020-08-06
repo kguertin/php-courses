@@ -10,27 +10,38 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $username = mysqli_real_escape_string($connection, $username);
-            $email = mysqli_real_escape_string($connection, $email);
-            $password = mysqli_real_escape_string($connection, $password);
+            if(!empty($username) && !empty($email) && !empty($password)){
 
-            $query = "SELECT randSalt FROM users";
-            $select_rand_salt = mysqli_query($connection, $query);
+                $username = mysqli_real_escape_string($connection, $username);
+                $email = mysqli_real_escape_string($connection, $email);
+                $password = mysqli_real_escape_string($connection, $password);
+    
+                $query = "SELECT randSalt FROM users";
+                $select_rand_salt = mysqli_query($connection, $query);
+    
+                if(!$select_rand_salt){
+                    die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
+                }
+    
+                $user_data = mysqli_fetch_array($select_rand_salt);
+                $salt = $user_data['randSalt'];
+    
+                $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+                $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
+                $register_user_query = mysqli_query($connection, $query);
+                
+                if(!$register_user_query){
+                    die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
+                }
 
-            if(!$select_rand_salt){
-                die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
+                $message = "Registration Successful";
+            } else {
+                $message = "Fields cannot be empty";
             }
 
-            $user_data = mysqli_fetch_array($select_rand_salt);
-            $salt = $user_data['randSalt'];
-
-            $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
-            $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
-            $register_user_query = mysqli_query($connection, $query);
-            
-            if(!$register_user_query){
-                die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
-            }
+           
+        } else {
+            $message = '';
         }
     ?>
     
@@ -45,6 +56,7 @@
                 <div class="form-wrap">
                 <h1>Register</h1>
                     <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                        <h6 class="text-center"><?php echo $message ?></h6>
                         <div class="form-group">
                             <label for="username" class="sr-only">username</label>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
