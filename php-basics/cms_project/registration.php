@@ -13,6 +13,24 @@
             $username = mysqli_real_escape_string($connection, $username);
             $email = mysqli_real_escape_string($connection, $email);
             $password = mysqli_real_escape_string($connection, $password);
+
+            $query = "SELECT randSalt FROM users";
+            $select_rand_salt = mysqli_query($connection, $query);
+
+            if(!$select_rand_salt){
+                die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
+            }
+
+            $user_data = mysqli_fetch_array($select_rand_salt);
+            $salt = $user_data['randSalt'];
+
+            $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+            $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
+            $register_user_query = mysqli_query($connection, $query);
+            
+            if(!$register_user_query){
+                die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
+            }
         }
     ?>
     
@@ -51,7 +69,5 @@
 
 
         <hr>
-
-
-
-<?php include "includes/footer.php";?>
+        
+<?php include "includes/footer.php"; ?>
