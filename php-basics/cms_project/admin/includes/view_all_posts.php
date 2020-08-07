@@ -118,7 +118,7 @@
             echo "<td>{$cat_title}</td>";
             echo "<td>{$post_status}</td>";
             echo "<td><img width='100' src='../images/$post_image' alt='Post Image'></td>";
-            echo "<td>{$post_views}</td>";
+            echo "<td><a href='posts.php?reset={$post_id}'>{$post_views}</a></td>";
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td>{$post_date}</td>";
@@ -140,11 +140,23 @@
     if(isset($_GET["delete"])){
         $delete_post_id = $_GET["delete"];
 
-        $query = "DELETE FROM posts where post_id = {$delete_post_id} ";
+        $query = "DELETE FROM posts WHERE post_id = {$delete_post_id} ";
         $delete_query = mysqli_query($connection, $query);
 
         confirm_query($delete_query);
 
         header("Location: posts.php");
     }
+
+    if(isset($_GET["reset"])){
+        $reset_post_id = $_GET["reset"];
+
+        $query = "UPDATE posts SET post_views = 0 WHERE post_id = " . mysqli_real_escape_string($connection,$reset_post_id) ." ";
+        $reset_query = mysqli_query($connection, $query);
+
+        confirm_query($reset_query);
+
+        header("Location: posts.php");
+    }
+
 ?>
