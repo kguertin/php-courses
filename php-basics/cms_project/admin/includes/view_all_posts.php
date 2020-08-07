@@ -72,6 +72,7 @@
             <th>Category</th>
             <th>Status</th>
             <th>Image</th>
+            <th>Views</th>
             <th>Tags</th>
             <th>Comments</th>
             <th>Date</th>
@@ -95,6 +96,7 @@
             $post_date = $row["post_date"];
             $post_tags = $row["post_tags"];
             $post_comment_count = $row["post_comment_count"];
+            $post_views = $row["post_views"];
             
             echo "<tr>";
             ?>
@@ -116,6 +118,7 @@
             echo "<td>{$cat_title}</td>";
             echo "<td>{$post_status}</td>";
             echo "<td><img width='100' src='../images/$post_image' alt='Post Image'></td>";
+            echo "<td>{$post_views}</td>";
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td>{$post_date}</td>";
