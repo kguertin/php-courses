@@ -26,10 +26,10 @@ if(isset($_POST['login'])) {
     $db_username = $query_user_table['username'];
     $db_password = $query_user_table['user_password'];
 
-    $password = crypt($password, $db_password);
+    // $password = crypt($password, $db_password); // We are using password varify rather than comparing the crypt
 
 
-    if($username === $db_username && $password === $db_password){
+    if(password_verify($password, $db_password)){
         $_SESSION['username'] = $db_username;
         $_SESSION['first_name'] = $db_first_name;
         $_SESSION['last_name'] = $db_last_name;
