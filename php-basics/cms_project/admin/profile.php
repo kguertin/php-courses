@@ -15,7 +15,6 @@
     $user_last_name = $user_data["user_last_name"];
     $user_email = $user_data["user_email"];
     $user_image = $user_data["user_image"];
-    $user_role = $user_data["user_role"];
     } 
 ?>
 
@@ -23,7 +22,6 @@
     if(isset($_POST["update_user"])) {
         $user_first_name = $_POST["user_first_name"];
         $user_last_name = $_POST["user_last_name"];
-        $user_role = $_POST["user_role"];
         $user_email = $_POST["user_email"];
         $username = $_POST["username"];
         $user_password = $_POST["user_password"];
@@ -32,7 +30,6 @@
         $query = "UPDATE users SET ";
         $query .= "user_first_name = '{$user_first_name}', ";
         $query .= "user_last_name = '{$user_last_name}', ";
-        $query .= "user_role= '{$user_role}', "; 
         $query .= "username = '{$username}', ";
         $query .= "user_email = '{$user_email}', ";
         $query .= "user_password = '{$user_password}' ";
@@ -77,20 +74,6 @@
     </div>
 
     <div class="form-group">
-        <select name="user_role" id="">
-        <option value="<?php echo $user_role ?>"><?php echo $user_role ?></option>
-        <?php
-            if($user_role == 'admin'){
-                echo "<option value='subscriber'>subscriber</option>";
-
-            } else {
-                echo "<option value='admin'>admin</option>";
-            }
-        ?>
-        </select>
-    </div>
-
-    <div class="form-group">
         <label for="username">Username</label>
         <input type="text" value="<?php echo $username ?>" class="form-control" name="username" id="username">
     </div>
@@ -102,7 +85,7 @@
 
     <div class="form-group">
         <label for="user_password">Password</label>
-        <input type="password" class="form-control" value="<?php echo $user_password ?>" name="user_password" id="user_password">
+        <input type="password" class="form-control" autocomplete="off" name="user_password" id="user_password">
     </div>
 
     <div class="form-group">
