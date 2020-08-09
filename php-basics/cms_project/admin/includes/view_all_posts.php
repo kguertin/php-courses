@@ -95,7 +95,6 @@
             $post_image = $row["post_image"];
             $post_date = $row["post_date"];
             $post_tags = $row["post_tags"];
-            $post_comment_count = $row["post_comment_count"];
             $post_views = $row["post_views"];
             
             echo "<tr>";
@@ -120,7 +119,12 @@
             echo "<td><img width='100' src='../images/$post_image' alt='Post Image'></td>";
             echo "<td><a href='posts.php?reset={$post_id}'>{$post_views}</a></td>";
             echo "<td>{$post_tags}</td>";
-            echo "<td>{$post_comment_count}</td>";
+
+            $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+            $send_comment_query = mysqli_query($connection, $query);
+            $count_comments = mysqli_num_rows($send_comment_query);
+            echo "<td>{$count_comments}</td>";
+
             echo "<td>{$post_date}</td>";
             echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>"; 
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";   
@@ -151,7 +155,7 @@
     if(isset($_GET["reset"])){
         $reset_post_id = $_GET["reset"];
 
-        $query = "UPDATE posts SET post_views = 0 WHERE post_id = " . mysqli_real_escape_string($connection,$reset_post_id) ." ";
+        $query = "UPDATE posts SET post_views = 0 WHERE post_id = " . mysqli_real_escape_string($connection, $reset_post_id) ." ";
         $reset_query = mysqli_query($connection, $query);
 
         confirm_query($reset_query);
