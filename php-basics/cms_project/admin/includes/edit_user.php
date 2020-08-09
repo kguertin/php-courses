@@ -26,29 +26,33 @@
         $username = $_POST["username"];
         $user_password = $_POST["user_password"];
 
-        $hash_query = "SELECT randSalt FROM users";
-        $get_rand_salt = mysqli_query($connection, $hash_query);
-        confirm_query($get_rand_salt);
+        if(!empty($user_password)){
+            $query_password = "SELECT user_password FROM users WHERE user_id = $user_id ";
+            $get_user_password = mysqli_query($connection, $query);
+            confirm_query($get_user_password);
 
-        $rand_salt = mysqli_fetch_array($get_rand_salt);
-        $salt = $rand_salt['rand_salt'];
+            $result = mysqli_fetch_array($get_user_password);
 
-        $hashed_password = crypt($user_password, $salt);
+            $db_user_password = $result['user_password'];
 
-
-        $query = "UPDATE users SET ";
-        $query .= "user_first_name = '{$user_first_name}', ";
-        $query .= "user_last_name = '{$user_last_name}', ";
-        $query .= "user_role= '{$user_role}', "; 
-        $query .= "username = '{$username}', ";
-        $query .= "user_email = '{$user_email}', ";
-        $query .= "user_password = '{$hashed_password}' ";
-        $query .= "WHERE user_id = {$edit_user_id} ";
-
-        $update_user = mysqli_query($connection, $query);
-        
-        confirm_query($update_user);
-        header("Location: users.php");
+            if($db_user_password != $user_password){
+                $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+            }
+    
+            $query = "UPDATE users SET ";
+            $query .= "user_first_name = '{$user_first_name}', ";
+            $query .= "user_last_name = '{$user_last_name}', ";
+            $query .= "user_role= '{$user_role}', "; 
+            $query .= "username = '{$username}', ";
+            $query .= "user_email = '{$user_email}', ";
+            $query .= "user_password = '{$hashed_password}' ";
+            $query .= "WHERE user_id = {$edit_user_id} ";
+    
+            $update_user = mysqli_query($connection, $query);
+            
+            confirm_query($update_user);
+            header("Location: users.php");
+        }
     
     }
 
