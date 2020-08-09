@@ -27,9 +27,11 @@ $(document).ready(function(){
 });
 
 function loadOnlineUsers(){
-    $.get("functions.php?onlineusers=result", function(data){
+    $.get("functions.php?online_users=result", function(data){
         $('.users-online').text(data);
     })
 }
 
-loadOnlineUsers();
+setInterval(function(){
+    loadOnlineUsers();
+}, 500);
