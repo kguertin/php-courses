@@ -37,7 +37,8 @@
     </div>
 
     <div class="form-group">
-        <select class='form-control' name="post_category" id="">
+    <label for="category">Category</label>
+        <select class='form-control' name="post_category" id="category">
             <?php
                 $query = "SELECT * FROM categories";
                 $get_edit_categories = mysqli_query($connection, $query);
@@ -53,13 +54,32 @@
             ?>
         </select>
     </div>
-
     <div class="form-group">
-        <label for="post_author">Post Author</label>
-        <input type="text" class="form-control" name="post_author" id="post_author">
+        <label for="users">Users</label>
+        <select class='form-control' name="post_category" id="users">
+            <?php
+                $query = "SELECT * FROM users";
+                $get_users = mysqli_query($connection, $query);
+
+                confirm_query($get_users);
+
+                while($row = mysqli_fetch_assoc($get_users)){
+                    $user_id = $row["user_id"];
+                    $username = $row["username"];
+
+                    echo "<option value='{$user_id}'>{$username}</option>";
+                }
+            ?>
+        </select>
     </div>
 
+    <!-- <div class="form-group">
+        <label for="post_author">Post Author</label>
+        <input type="text" class="form-control" name="post_author" id="post_author">
+    </div> -->
+
     <div class="form-group">
+    <label for="post_status">Post Status</label>
         <select class='form-control' name="post_status" id="post_status">
             <option value="draft">Select Options</option>
             <option value="published">Publish</option>
