@@ -20,12 +20,12 @@
             <h1 class="page-header">All posts by <?php echo $post_author; ?></a></h1>
 
             <?php
-            $query = "SELECT * FROM posts WHERE post_author = '{$post_author}'";
+            $query = "SELECT * FROM posts WHERE post_user = '{$post_author}'";
                 $select_all_posts = mysqli_query($connection, $query);
 
                 while($row = mysqli_fetch_assoc($select_all_posts)){
                     $post_title = $row["post_title"];
-                    $post_author = $row["post_author"];
+                    $post_author = $row["post_user"];
                     $post_date = $row["post_date"];
                     $post_image = $row["post_image"];
                     $post_content = $row["post_content"];

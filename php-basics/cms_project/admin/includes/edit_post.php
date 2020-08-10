@@ -66,7 +66,7 @@
     </div>
 
     <div class="form-group">
-    <label for="category"></label>
+    <label for="category">Category</label>
         <select class="form-control" name="post_category" id="category">
             <?php
                 $query = "SELECT * FROM categories";
@@ -87,6 +87,7 @@
     <div class="form-group">
         <label for="users">Users</label>
         <select class='form-control' name="post_user" id="users">
+        <?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
             <?php
                 $query = "SELECT * FROM users";
                 $get_users = mysqli_query($connection, $query);
