@@ -67,7 +67,7 @@
         <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
             <th>ID</th>
-            <th>Author</th>
+            <th>User</th>
             <th>Title</th>
             <th>Category</th>
             <th>Status</th>
@@ -89,6 +89,7 @@
         while($row = mysqli_fetch_assoc($select_posts)){
             $post_id = $row["post_id"];
             $post_author = $row["post_author"];
+            $post_user = $row['post_user'];
             $post_title = $row["post_title"];
             $post_category_id = $row["post_category_id"];
             $post_status = $row["post_status"];
@@ -104,7 +105,12 @@
             
             <?php
             echo "<td>{$post_id}</td>";
-            echo "<td>{$post_author}</td>";
+            if(!empty($post_author)){
+                echo "<td>{$post_author}</td>";
+            } else if(!empty($post_user)){
+                echo "<td>{$post_user}</td>";
+            }
+
             echo "<td>{$post_title}</td>";
 
             // Get category title matching category id 
@@ -132,8 +138,6 @@
             echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this post?'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
         }
-
-
     ?>
         
     </tbody>
