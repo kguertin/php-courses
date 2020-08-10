@@ -51,13 +51,6 @@
                                     echo "<td>{$comment_email}</td>";
                                     echo "<td>{$comment_status}</td>";
                                     
-                                    // Get category title matching category id 
-                                    // $query = "SELECT * FROM categories WHERE id = $post_category_id";
-                                    // $select_category_id = mysqli_query($connection, $query);
-                                    
-                                    // $category_result = mysqli_fetch_assoc($select_category_id);
-                                    // $cat_title = $category_result["cat_title"];
-                                    
                                     $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
                                     $select_post_comments = mysqli_query($connection, $query);
 
@@ -67,9 +60,9 @@
 
                                     echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
                                     echo "<td>{$comment_date}</td>";
-                                    echo "<td><a href='comments.php?approve={$comment_id}'>Approve</a></td>";      
-                                    echo "<td><a href='comments.php?unapprove={$comment_id}'>Unapprove</a></td>";    
-                                    echo "<td><a href='comments.php?delete={$comment_id}'>Delete</a></td>";
+                                    echo "<td><a href='view_post_comments.php?approve={$comment_id}&p_id=" . $_GET['p_id'] ."'>Approve</a></td>";      
+                                    echo "<td><a href='view_post_comments.php?unapprove={$comment_id}&p_id=" . $_GET['p_id'] ."'>Unapprove</a></td>";    
+                                    echo "<td><a href='view_post_comments.php?delete={$comment_id}&p_id=" . $_GET['p_id'] ."'>Delete</a></td>";
                                     
                                     echo "</tr>";
                                 }
@@ -91,7 +84,7 @@
 
                                 confirm_query($unapprove_comment_query);
 
-                                header("Location: comments.php");
+                                header("Location: view_post_comments.php?p_id=" . $_GET['p_id']);
                             }
 
                             if(isset($_GET["approve"])){
@@ -102,7 +95,7 @@
 
                                 confirm_query($approve_comment_query);
 
-                                header("Location: comments.php");
+                                header("Location: view_post_comments.php?p_id=" . $_GET['p_id']);
                             }
 
                             if(isset($_GET["delete"])){
@@ -113,7 +106,7 @@
 
                                 confirm_query($delete_query);
 
-                                header("Location: comments.php");
+                                header("Location: view_post_comments.php?p_id=" . $_GET['p_id']);
                             }
                         ?>
                     </div>
