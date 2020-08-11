@@ -1,11 +1,12 @@
 <?php
-// Defining a class in PHP
+
 class Cars {
+    //Defining methods
     function greeting() {
     }
 
     function goodbye() {
-        
+
     }
 }
 

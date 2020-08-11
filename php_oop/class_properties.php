@@ -1,12 +1,19 @@
 <?php
-// Defining a class in PHP
+
 class Cars {
+    //creating a class property 
+    var $wheel_count= 4;
+    var $door_count = 4;
+
     function greeting() {
-        echo "Hello World";
+        return "This car has " .$this->wheel_count . "wheels";
     }
 
 }
 
-$obj = new Cars();
+$bmw = new Cars();
 
-$obj->greeting();
+//Accessing a Class variable and can change on object
+echo $bmw->wheel_count . "<br />";
+echo $bmw->wheel_count = 10 . "<br />"; //This doesnt change the class
+echo $bmw->greeting();
