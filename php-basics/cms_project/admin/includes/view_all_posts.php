@@ -137,7 +137,7 @@
             echo "<td>{$post_date}</td>";
             echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>"; 
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";   
-            echo "<td><a rel='{$post_id}' href='' class='delete-link'>Delete</a></td>";
+            echo "<td><a rel='{$post_id}' href='javascript:void(0)' class='delete-link'>Delete</a></td>";
             // echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this post?'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
         }
@@ -177,7 +177,11 @@
     $(document).ready(function(){
             $(".delete-link").on('click', function(){
                 const id = $(this).attr("rel");
-                alert(id);
+                const deleteURL = "posts.php?delete=" + id +" ";
+
+                $(".modal-delete-link").attr("href", deleteURL);
+
+                $("#myModal").modal('show');
             })
     })
 </script>
