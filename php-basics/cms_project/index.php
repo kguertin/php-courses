@@ -25,18 +25,18 @@
                     $page_1 = ($page * $per_page) - $per_page;
                 }
 
-                $post_query_count = "SELECT * FROM posts";
+                $post_query_count = "SELECT * FROM posts WHERE post_status = 'published' ";
                 $find_count = mysqli_query($connection, $post_query_count);
                 $count = mysqli_num_rows($find_count);
                 $count = ceil($count / $per_page);
 
+                if ($count < 1){
+                    echo "<h1 class='text-center'>No Posts Found</h1>";
+                } else {
 
                 $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $per_page";
                 $select_published_posts = mysqli_query($connection, $query);
                 
-                if(mysqli_num_rows($select_published_posts) === 0){
-                    echo "<h1 class='text-center'>No Post Found</h1>";
-                } else {
 
                 while($row = mysqli_fetch_assoc($select_published_posts)){
                     $post_id = $row["post_id"];
