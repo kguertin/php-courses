@@ -7,9 +7,11 @@
             Admin
             <small>Subheading</small>
             <?php 
-            if($db->connection){
-                echo "YEP";
-            }
+                $sql = "SELECT * FROM users WHERE user_id = 1";
+                $result = $db->query($sql);
+                $user_found = mysqli_fetch_array($result);
+                echo $user_found['username']
+
             ?>
         </h1>
         <ol class="breadcrumb">
