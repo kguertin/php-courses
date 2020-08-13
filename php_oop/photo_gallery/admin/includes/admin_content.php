@@ -7,10 +7,11 @@
             Admin
             <small>Subheading</small>
             <?php 
-                $sql = "SELECT * FROM users WHERE user_id = 1";
-                $result = $db->query($sql);
-                $user_found = mysqli_fetch_array($result);
-                echo $user_found['username']
+                $result = User::find_all_users();
+
+                while($row = mysqli_fetch_array($result)){
+                    echo $row['username'];
+                }
 
             ?>
         </h1>

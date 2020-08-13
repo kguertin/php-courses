@@ -39,8 +39,13 @@
                 if ($count < 1){
                     echo "<h1 class='text-center'>No Posts Found</h1>";
                 } else {
-
-                $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $per_page";
+                
+                if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                    $query = "SELECT * FROM posts LIMIT $page_1, $per_page";;
+                } else {
+                    $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $per_page";
+                }
+                
                 $select_published_posts = mysqli_query($connection, $query);
                 
 
