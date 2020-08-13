@@ -3,7 +3,11 @@ require_once('db_config.php');
 
 class Database {
 
-    private $connection;
+    public $connection;
+
+    function __construct(){
+        $this->db_connect();
+    }
 
     public function db_connect() {
         $this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -14,5 +18,4 @@ class Database {
     }
 }
 
-$db = new Database();
-$db->db_connect();
+$db = new Database;
