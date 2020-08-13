@@ -21,9 +21,17 @@
                         die("Query Failed." . mysqli_error($connection));
                     }
 
+                    if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+                        $query = "SELECT * FROM posts WHERE post_id = {$post_id}";
+                    } else {
+                    $query = "SELECT * FROM posts WHERE post_id = {$post_id} AND post_status = 'published' ";
+                    }
                 
-                    $query = "SELECT * FROM posts WHERE post_id = {$post_id}";
                         $select_all_posts = mysqli_query($connection, $query);
+
+                        if(mysqli_num_rows($select_all_posts) < 1){
+                            echo "<h1 class='text-center'>No Post Found</h1>";
+                        } else {
 
                         while($row = mysqli_fetch_assoc($select_all_posts)){
                             $post_title = $row["post_title"];
@@ -35,8 +43,7 @@
                             ?>
 
                         <h1 class="page-header">
-                            Page Heading
-                            <small>Secondary Text</small>
+                        Posts
                         </h1>
 
                         <!-- First Blog Post -->
@@ -54,11 +61,7 @@
 
                         <hr>
 
-            <?php }
-                    } else {
-                        header("Location: index.php");
-                    }
-            ?>
+            <?php } ?>
 
             <?php
                 if(isset($_POST["create_comment"])){
@@ -133,7 +136,9 @@
                     </div>
 
 
-                    <?php } ?>
+                    <?php } } } else {
+                        header("Location: index.php");
+                    } ?>
 
             </div>
 
