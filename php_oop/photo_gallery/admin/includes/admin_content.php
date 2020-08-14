@@ -12,14 +12,9 @@
                     echo $user->username . "<br />";
                 }
 
-                // while($row = mysqli_fetch_array($result)){
-                //     echo $row['username'] . "<br />";
-                // }
 
-                // $find_user = User::find_user_by_id(1);
-                // $current_user = User::instantiation($find_user); 
-                // echo $current_user->username;
-
+                $find_user = User::find_user_by_id(1);
+                echo $find_user->username;
 
             ?>
         </h1>

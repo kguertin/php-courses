@@ -17,9 +17,8 @@ class User {
         global $db;
 
         $get_user = self::submit_query("SELECT * FROM users WHERE user_id = {$id} LIMIT 1");
-        $found_user = mysqli_fetch_array($get_user);
 
-        return $found_user;
+        return !empty($get_user) ? array_shift($get_user) : false;
     }
 
     public static function submit_query($sql){
