@@ -14,14 +14,9 @@
                 }
 
                 $find_user = User::find_user_by_id(1);
-                $user = new User();
-                $user->id = $find_user['user_id'];
-                $user->username = $find_user['username'];
-                $user->password = $find_user['user_password'];
-                $user->first_name = $find_user['user_first_name'];
-                $user->last_name = $find_user['user_last_name'];
+                $current_user = User::instantiation($find_user); 
+                echo $current_user->username;
 
-                echo $user->username;
 
             ?>
         </h1>
