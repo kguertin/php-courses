@@ -35,9 +35,9 @@ class Database {
         return $escaped_string;
     }
 
-    public function add_id(){
-        return $this->connection->insert_id;
-    }
+    // public function add_id(){
+    //     return $this->connection->insert_id;
+    // }
 }
 
-$db = new Database;
+$db = new Database();

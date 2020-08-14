@@ -1,6 +1,7 @@
 <?php
-include('functions.php');
-include('db_config.php');
-include('db.php');
-// include('user.php');
+require_once('functions.php');
+require_once('db_config.php');
+require_once('db.php');
+require_once('user.php');
+require_once('session.php');
 
