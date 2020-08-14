@@ -31,7 +31,6 @@ class User {
         while($row = mysqli_fetch_array($result)){
             $obj_array[] = self::instantiation($row);
         }
-
         return $obj_array;
     }
 
@@ -51,4 +50,5 @@ class User {
         $obj_properties = get_object_vars($this);
         return array_key_exists($attribute, $obj_properties);
     }
+
 }
