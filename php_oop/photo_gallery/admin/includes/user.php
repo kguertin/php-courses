@@ -32,12 +32,18 @@ class User {
 
     public static function instantiation($user_data){
         $obj = new self;
-        $obj->id = $user_data['user_id'];
-        $obj->username = $user_data['username'];
-        $obj->password = $user_data['user_password'];
-        $obj->first_name = $user_data['user_first_name'];
-        $obj->last_name = $user_data['user_last_name'];
+
+        foreach($user_data as $attribute => $value){
+            if($obj->has_attribute($attribute)){
+                $obj->attribute = $value;
+            };
+        }
 
         return $obj;
-    }  
+    } 
+    
+    private function has_attribute($attribute){
+        $obj_properties = get_object_vars($this);
+        return array_key_exists($attribute, $obj_properties);
+    }
 }
