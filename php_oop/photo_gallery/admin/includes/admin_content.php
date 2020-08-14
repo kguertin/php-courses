@@ -7,15 +7,18 @@
             Admin
             <small>Subheading</small>
             <?php 
-                $result = User::find_all_users();
-
-                while($row = mysqli_fetch_array($result)){
-                    echo $row['username'] . "<br />";
+                $users = User::find_all_users();
+                foreach($users as $user){
+                    echo $user->username . "<br />";
                 }
 
-                $find_user = User::find_user_by_id(1);
-                $current_user = User::instantiation($find_user); 
-                echo $current_user->username;
+                // while($row = mysqli_fetch_array($result)){
+                //     echo $row['username'] . "<br />";
+                // }
+
+                // $find_user = User::find_user_by_id(1);
+                // $current_user = User::instantiation($find_user); 
+                // echo $current_user->username;
 
 
             ?>

@@ -27,7 +27,13 @@ class User {
 
         $result = $db->query($sql);
 
-        return $result;
+        $obj_array = array();
+
+        while($row = mysqli_fetch_array($result)){
+            $obj_array[] = self::instantiation($row);
+        }
+
+        return $obj_array;
     }
 
     public static function instantiation($user_data){
@@ -35,7 +41,7 @@ class User {
 
         foreach($user_data as $attribute => $value){
             if($obj->has_attribute($attribute)){
-                $obj->attribute = $value;
+                $obj->$attribute = $value;
             };
         }
 
