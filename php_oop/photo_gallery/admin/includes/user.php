@@ -34,6 +34,16 @@ class User {
         return $obj_array;
     }
 
+    public static function verify_user($username, $password){
+        global $db;
+        
+        $username = $db->escape_string($username);
+        $password = $db->escape_string($password);
+
+        
+
+    }
+
     public static function instantiation($user_data){
         $obj = new self;
 
