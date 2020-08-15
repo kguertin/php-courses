@@ -36,6 +36,5 @@ class Session {
         $this->signed_in = false; 
     }
 
-
 }
 $session = new Session();
