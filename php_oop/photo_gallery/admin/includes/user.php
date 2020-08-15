@@ -41,7 +41,7 @@ class User {
         $password = $db->escape_string($password);
 
         $sql = "SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}' LIMIT 1 ";
-        $get_user = $db::submit_query($sql);
+        $get_user = self::submit_query($sql);
 
         return !empty($get_user) ? array_shift($get_user) : false;
     }
