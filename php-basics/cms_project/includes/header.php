@@ -1,5 +1,6 @@
-<?php include "db.php"; ?>
 <?php session_start() ?>
+<?php include "db.php"; ?>
+<?php require_once('./admin/functions.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

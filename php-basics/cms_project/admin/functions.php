@@ -149,7 +149,50 @@ function check_user($username){
     if(mysqli_num_rows($result) > 0){
         return true;
     } else {
-        return false'
+        return false;
+    }
+}
+
+function check_email($email) {
+    $query = "SELECT user_email FROM users WHERE user_email = '{$email}' ";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    if(mysqli_num_rows($result) > 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function redirect($location){
+    return header("Location: " . $location);
+}
+
+function register_user($username, $email, $password){
+    global $connection;
+
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if(check_user($username)){
+       $message = "This user already exists";
     }
 
+    if(!empty($username) && !empty($email) && !empty($password)){
+
+        $username = mysqli_real_escape_string($connection, $username);
+        $email = mysqli_real_escape_string($connection, $email);
+        $password = mysqli_real_escape_string($connection, $password);
+
+        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+
+        $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+        $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
+        $register_user_query = mysqli_query($connection, $query);
+        
+        confirm_query($register_user_query);
+ 
+    }
 }

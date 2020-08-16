@@ -11,7 +11,7 @@
             $password = $_POST['password'];
 
             if(check_user($username)){
-                return $message = "This user already exists";
+               echo $message = "This user already exists";
             }
 
             if(!empty($username) && !empty($email) && !empty($password)){
