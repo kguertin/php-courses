@@ -85,7 +85,6 @@
     </thead>
     <tbody>
     <?php
-        // $query = "SELECT * FROM posts ORDER BY post_id DESC";
         $query = "SELECT posts.post_id, posts.post_author, posts.post_user, posts.post_title, posts.post_category_id, posts.post_status, posts.post_image, ";
         $query .= "posts.post_tags, posts.post_comment_count, posts.post_date, posts.post_views, categories.id, categories.cat_title ";
         $query .= "FROM posts ";
@@ -120,13 +119,6 @@
             }
 
             echo "<td>{$post_title}</td>";
-
-            // Get category title matching category id 
-            // $query = "SELECT * FROM categories WHERE id = $post_category_id";
-            // $select_category_id = mysqli_query($connection, $query);
-      
-            // $category_result = mysqli_fetch_assoc($select_category_id);
-            // $cat_title = $category_result["cat_title"];
 
             echo "<td>{$category_title}</td>";
             echo "<td>{$post_status}</td>";
