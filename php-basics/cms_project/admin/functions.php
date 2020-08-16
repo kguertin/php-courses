@@ -154,6 +154,8 @@ function check_user($username){
 }
 
 function check_email($email) {
+    global $connection;
+
     $query = "SELECT user_email FROM users WHERE user_email = '{$email}' ";
     $result = mysqli_query($connection, $query);
     confirm_query($result);
