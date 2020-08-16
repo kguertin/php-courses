@@ -5,39 +5,45 @@
     <?php  include "includes/navigation.php"; ?>
 
     <?php
-        if(isset($_POST['submit'])){
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+        if(isset($_POST['submit'])){            
+            $username = trim($_POST['username']);
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+
+            $error = [
+                'username' => '',
+                'email' => '',
+                'password' => ''
+            ];
+
+            if(strlen($username) < 4){
+                $error['username'] = 'Username needs to be four characters or more.';
+            }
+            
+            if(empty($username)){
+                $error['username'] = 'Please enter a username.';
+            }
 
             if(check_user($username)){
-               echo $message = "This user already exists";
+                $error['username'] = 'Username already exists.';
             }
 
-            if(!empty($username) && !empty($email) && !empty($password)){
-
-                $username = mysqli_real_escape_string($connection, $username);
-                $email = mysqli_real_escape_string($connection, $email);
-                $password = mysqli_real_escape_string($connection, $password);
-
-                $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
-    
-                $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
-                $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
-                $register_user_query = mysqli_query($connection, $query);
-                
-                if(!$register_user_query){
-                    die('Query Failed' . mysqli_error($connection) . mysqli_errno($connection));
-                }
-
-                $message = "Registration Successful";
-            } else {
-                $message = "Fields cannot be empty";
+            if(strlen($email) < 4){
+                $error['email'] = 'Email needs to be four characters or more.';
+            }
+            
+            if(empty($email)){
+                $error['email'] = 'Please enter an email.';
             }
 
-           
-        } else {
-            $message = '';
+            if(check_email($email)){
+                $error['email'] = "Email already assigned to an account. <a href='index.php'>Go to Login</a>";
+            }
+
+            if(empty($password)){
+                $error['password'] = 'Please enter a password.';
+            }
+
         }
     ?>
     

@@ -172,10 +172,6 @@ function redirect($location){
 function register_user($username, $email, $password){
     global $connection;
 
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
     if(check_user($username)){
        $message = "This user already exists";
     }
