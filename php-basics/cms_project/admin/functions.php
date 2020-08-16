@@ -101,7 +101,7 @@ function escape($string){
 
 function record_count($table) {
     global $connection;
-    
+
     $query = "SELECT * FROM " . $table;
     $select_all_posts = mysqli_query($connection, $query);
 
@@ -109,4 +109,14 @@ function record_count($table) {
     confirm_query($result);
 
     return $result;
+}
+
+function check_status($table, $col_name, $status) {
+    global $connection;
+
+    $query = "SELECT * FROM  $table WHERE $col_name = '$status' ";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    return mysqli_num_rows($result);
 }
