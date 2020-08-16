@@ -10,6 +10,10 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
 
+            if(check_user($username)){
+                return $message = "This user already exists";
+            }
+
             if(!empty($username) && !empty($email) && !empty($password)){
 
                 $username = mysqli_real_escape_string($connection, $username);
