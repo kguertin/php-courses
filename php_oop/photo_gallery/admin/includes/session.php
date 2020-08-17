@@ -4,7 +4,7 @@ class Session {
     private $signed_in = false;
     public $user_id;
 
-    function _construct(){
+    function __construct(){
         session_start();
         $this->check_login();
     }
@@ -13,9 +13,9 @@ class Session {
         return $this->signed_in;
     }
     
-    public function log_in($user){
+    public function login($user){
         if($user){
-            $this->user_id = $_SESSION['user_id'] = $user->id;
+            $this->user_id = $_SESSION['user_id'] = $user->user_id;
             $this->signed_in = true;
         }
     }
@@ -30,11 +30,12 @@ class Session {
         }
     }
 
-    public function log_out($user){
+    public function logout($user){
         unset($_SESSION['user_id']);
         unset($this->user_id);
         $this->signed_in = false; 
     }
-
 }
+
 $session = new Session();
+?>

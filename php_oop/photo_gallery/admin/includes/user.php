@@ -2,21 +2,21 @@
 
 class User {
 
-    public $id;
+    public $user_id;
     public $username;
-    public $password;
-    public $first_name;
-    public $last_name;
+    public $user_password;
+    public $user_first_name;
+    public $user_last_name;
 
 
     public static function find_all_users(){   
         return self::submit_query("SELECT * FROM users");
     }
 
-    public static function find_user_by_id($id){
+    public static function find_user_by_id($user_id){
         global $db;
 
-        $get_user = self::submit_query("SELECT * FROM users WHERE user_id = {$id} LIMIT 1");
+        $get_user = self::submit_query("SELECT * FROM users WHERE user_id = {$user_id} LIMIT 1");
 
         return !empty($get_user) ? array_shift($get_user) : false;
     }
