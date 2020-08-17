@@ -21,13 +21,15 @@
     if(isset($_POST['submit_update'])){
       $cat_title_update = $_POST["cat_title"];
 
-      $query = "UPDATE categories SET cat_title = '{$cat_title_update}' WHERE id = {$cat_id}";
+      $stmt = mysqli_prepare($connection, "UPDATE categories SET cat_title = ? WHERE id = ?");
+      mysqli_stmt_bind_param($stmt, 'si', $cat_title_update, $cat_id);
+      mysqli_stmt_execute($stmt);
 
-      $update_query = mysqli_query($connection, $query);
-
-      if(!$update_query){
+      if(!$stmt){
         die("Query Failed" . mysqli_error($connection));
       }
+      
+      redirect('./categories.php');
     }                                                    
   ?>
   </div>    
