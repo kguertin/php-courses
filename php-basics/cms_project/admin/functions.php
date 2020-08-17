@@ -174,12 +174,6 @@ function redirect($location){
 function register_user($username, $email, $password){
     global $connection;
 
-    if(check_user($username)){
-       $message = "This user already exists";
-    }
-
-    if(!empty($username) && !empty($email) && !empty($password)){
-
         $username = mysqli_real_escape_string($connection, $username);
         $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
@@ -191,10 +185,9 @@ function register_user($username, $email, $password){
         $register_user_query = mysqli_query($connection, $query);
         
         confirm_query($register_user_query);
-    }
 }
 
-function login_user($username, $email){
+function login_user($username, $password){
     global $connection;
 
     $username = trim($username);
@@ -207,9 +200,7 @@ function login_user($username, $email){
     $query = "SELECT * FROM users WHERE username = '{$username}' ";
     $select_user_query = mysqli_query($connection, $query);
 
-    if(!$select_user_query) {
-        die("Query failed" . mysqli_error($connection));
-    }
+    confirm_query($select_user_query);
 
     $query_user_table = mysqli_fetch_array($select_user_query);
 
@@ -229,8 +220,8 @@ function login_user($username, $email){
         $_SESSION['last_name'] = $db_last_name;
         $_SESSION['user_role'] = $db_user_role;
 
-        header("Location: ../admin"); 
+        redirect('/php-courses/php-basics/cms_project/admin'); 
     } else {
-        header("Location: ../index.php");
+        redirect('/php-courses/php-basics/cms_project/index.php');
     }
 }
