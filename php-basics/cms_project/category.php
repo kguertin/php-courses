@@ -64,7 +64,7 @@
 
                 <hr>
 
-                <?php endwhile; } else {
+                <?php endwhile; mysqli_stmt_close($stmt); } else {
                 header("Location: index.php");
             } ?>
 

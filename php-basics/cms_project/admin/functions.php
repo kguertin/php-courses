@@ -55,6 +55,8 @@ function insert_categories(){
             if(!$stmt){
                 die('Query Failed' .  mysqli_error($connection));
             }
+            
+            mysqli_stmt_close($stmt);
         }
     }
 }
