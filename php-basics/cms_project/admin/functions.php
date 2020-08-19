@@ -169,7 +169,28 @@ function check_email($email) {
 }
 
 function redirect($location){
-    return header("Location: " . $location);
+    header("Location: " . $location);
+    exit;
+}
+
+function check_method($method = null){
+    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
+        return true;
+    }
+    return false;
+}
+
+function is_logged_in() {
+    if(isset($_SESSION['user_role'])){
+        return true;
+    } 
+    return false;
+}
+
+function check_logged_in_and_redirect($path=null) { 
+    if(is_logged_in()){
+        redirect($path);
+    }
 }
 
 function register_user($username, $email, $password){
