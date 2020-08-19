@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="./index.php">CMS Front</a>
+                <a class="navbar-brand" href="/php-courses/php-basics/cms_project/">CMS Front</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,17 +34,17 @@
                             $registration_class = 'active';
                         }
                         
-                        echo "<li class='$category_class'><a href='category.php?category={$cat_id}'>{$cat_title}</a></li>";
+                        echo "<li class='$category_class'><a href='/php-courses/php-basics/cms_project/category/{$cat_id}'>{$cat_title}</a></li>";
                     }
                 ?>
-                    <li><a href="admin">Admin</a></li>
-                    <li class='<?php echo $registration_class; ?>'><a href="registration.php">Registration</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="/php-courses/php-basics/cms_project/admin">Admin</a></li>
+                    <li class='<?php echo $registration_class; ?>'><a href="/php-courses/php-basics/cms_project/registration">Registration</a></li>
+                    <li><a href="/php-courses/php-basics/cms_project/contact">Contact</a></li>
                 <?php 
                     if(isset($_SESSION['user_role'])){
                         if(isset($_GET['p_id'])){
                             $post_id = $_GET['p_id'];
-                            echo "<li><a href='./admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
+                            echo "<li><a href='/php-courses/php-basics/cms_project/admin/posts.php?source=edit_post&p_id={$post_id}'>Edit Post</a></li>";
                         }
                     }
                 ?>
