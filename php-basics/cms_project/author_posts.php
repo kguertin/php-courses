@@ -35,7 +35,7 @@
 
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title; ?></a>
+                    <a href="post/<?php echo $post_id ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date; ?></p>
                 <hr>
