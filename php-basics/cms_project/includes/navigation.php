@@ -37,8 +37,13 @@
                         echo "<li class='$category_class'><a href='/php-courses/php-basics/cms_project/category/{$cat_id}'>{$cat_title}</a></li>";
                     }
                 ?>
+                <?php if(is_logged_in()): ?>
                     <li><a href="/php-courses/php-basics/cms_project/admin">Admin</a></li>
+                    <li><a href="/php-courses/php-basics/cms_project/includes/logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="/php-courses/php-basics/cms_project/login.php">Login</a></li>
                     <li class='<?php echo $registration_class; ?>'><a href="/php-courses/php-basics/cms_project/registration">Registration</a></li>
+                <?php endif; ?>
                     <li><a href="/php-courses/php-basics/cms_project/contact">Contact</a></li>
                 <?php 
                     if(isset($_SESSION['user_role'])){

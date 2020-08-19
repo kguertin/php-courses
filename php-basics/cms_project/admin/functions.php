@@ -226,24 +226,28 @@ function login_user($username, $password){
 
     $query_user_table = mysqli_fetch_array($select_user_query);
 
-    $db_id = $query_user_table['user_id'];
-    $db_first_name = $query_user_table['user_first_name'];
-    $db_last_name = $query_user_table['user_last_name'];
-    $db_user_role = $query_user_table['user_role'];
-    $db_username = $query_user_table['username'];
-    $db_password = $query_user_table['user_password'];
+    if($query_user_table){
+        $db_id = $query_user_table['user_id'];
+        $db_first_name = $query_user_table['user_first_name'];
+        $db_last_name = $query_user_table['user_last_name'];
+        $db_user_role = $query_user_table['user_role'];
+        $db_username = $query_user_table['username'];
+        $db_password = $query_user_table['user_password'];
 
-    // $password = crypt($password, $db_password); // We are using password varify rather than comparing the crypt
-
-
-    if(password_verify($password, $db_password)){
-        $_SESSION['username'] = $db_username;
-        $_SESSION['first_name'] = $db_first_name;
-        $_SESSION['last_name'] = $db_last_name;
-        $_SESSION['user_role'] = $db_user_role;
-
-        redirect('/php-courses/php-basics/cms_project/admin'); 
-    } else {
-        redirect('/php-courses/php-basics/cms_project/index.php');
+        
+        // $password = crypt($password, $db_password); // We are using password varify rather than comparing the crypt
+        
+        
+        if(password_verify($password, $db_password)){
+            $_SESSION['username'] = $db_username;
+            $_SESSION['first_name'] = $db_first_name;
+            $_SESSION['last_name'] = $db_last_name;
+            
+            $_SESSION['user_role'] = $db_user_role;
+            redirect('/php-courses/php-basics/cms_project/admin'); 
+        } else {
+            return false;
+        }
     }
+    return true;
 }

@@ -25,7 +25,7 @@
                     <a href="includes/logout.php" class="btn btn-primary">Logout</a>
                 <?php else: ?>
                     <h4>Login</h4>
-                    <form action="./includes/login.php" method="POST">
+                    <form action="./login.php" method="POST">
                         <div class="form-group">
                             <input name="username" type="text" class="form-control" placeholder="Enter Username">
                         </div>
