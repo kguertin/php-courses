@@ -1,3 +1,13 @@
+          <?php
+            if(check_method('POST')){
+                if(isset($_POST['username']) && isset($_POST['password'])){
+                    login_user($_POST['username'], $_POST['password']);
+                  } else {
+                    redirect('/php-courses/php-basics/cms_project/login.php');
+                  }
+            }
+          ?>
+          
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
 
@@ -25,7 +35,7 @@
                     <a href="includes/logout.php" class="btn btn-primary">Logout</a>
                 <?php else: ?>
                     <h4>Login</h4>
-                    <form action="./login.php" method="POST">
+                    <form method="POST">
                         <div class="form-group">
                             <input name="username" type="text" class="form-control" placeholder="Enter Username">
                         </div>
@@ -34,6 +44,9 @@
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" name="login" type="submit">Submit</button>
                             </span>
+                        </div>
+                        <div class="form-group">
+                            <a href="forgot_password.php?id=<?php echo uniqid(true) ?>t<">Forgot Password</a>
                         </div>
                     </form> <!-- Search Form -->
                 <?php endif; ?>
