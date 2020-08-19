@@ -1,7 +1,7 @@
 <?php  include "includes/header.php"; ?>
 
 <?php
-    if(!check_method('GET') || !$_GET['forgot']){
+    if(!check_method('GET') && isset($_GET['forgot'])){
         redirect('index');
     }
 
@@ -10,6 +10,18 @@
             $email = $_POST['email'];
             $length = 50;
             $token = bin2hex(openssl_random_pseudo_bytes($length));
+
+            if(check_email($email)){
+
+                if($stmt = mysqli_prepare($connection, "UPDATE users SET token='{$token}' WHERE user_email = ?")){
+                    mysqli_stmt_bind_param($stmt, "s", $email);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo mysql_error($connection);
+                }
+
+            }
         }
     }
 ?>
