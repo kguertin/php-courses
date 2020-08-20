@@ -1,10 +1,18 @@
 {
     "name": "kevin/cms_project",
+    "description": "A CMS Project to learn PHP",
     "authors": [
         {
             "name": "Kevin Guertin",
             "email": "32689269+kguertin@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    },
+    "autoload": {
+        "classmap": [
+            "classes"
+        ]
+    }
 }

@@ -9,8 +9,6 @@ use PHPMailer\PHPMailer\Exception;
     
     // Load Composer's autoloader
     require 'vendor/autoload.php';
-    require './classes/Config.php';
-
 
 
 
@@ -43,12 +41,14 @@ use PHPMailer\PHPMailer\Exception;
                     $mail->Port       = Config::SMTP_PORT;                         
                     $mail->SMTPAuth   = true;                                  
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    $mail->isHTML(true);     
+                    $mail->isHTML(true);  
+                    $mail->CharSet = 'UTF-8';
 
                     $mail->setFrom('kevin.m.guertin@gmail.com', 'Kevin');
                     $mail->addAddress($email);
                     $mail->Subject = "This is a test email.";
                     $mail->Body = '<h1>Email Body</h1>';
+
 
                     if($mail->send()){
                         echo "It worked";
