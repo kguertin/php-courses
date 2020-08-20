@@ -17,6 +17,8 @@
                     mysqli_stmt_bind_param($stmt, "s", $email);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
+
+                    mail();
                 } else {
                     echo mysql_error($connection);
                 }

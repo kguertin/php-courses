@@ -1,0 +1,10 @@
+{
+    "name": "kevin/cms_project",
+    "authors": [
+        {
+            "name": "Kevin Guertin",
+            "email": "32689269+kguertin@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
