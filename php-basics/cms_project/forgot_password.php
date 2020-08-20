@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 ?>
 <?php  include "includes/header.php"; ?>
+<?php include "includes/navigation.php"; ?>
 
 <?php
     
@@ -53,10 +54,8 @@ use PHPMailer\PHPMailer\Exception;
 
 
                     if($mail->send()){
-                        echo "It worked";
-                    } else {
-                        echo "Fail";
-                    }
+                        $email_sent = true;
+                    } 
 
                 } else {
                     echo mysql_error($connection);
@@ -78,6 +77,8 @@ use PHPMailer\PHPMailer\Exception;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="text-center">
+
+                            <?php if(!isset($email_sent)): ?>
                                 <h3><i class="fa fa-lock fa-4x"></i></h3>
                                 <h2 class="text-center">Forgot Password?</h2>
                                 <p>You can reset your password here.</p>
@@ -99,6 +100,9 @@ use PHPMailer\PHPMailer\Exception;
                                     </form>
 
                                 </div><!-- Body-->
+                            <?php else: ?>
+                                <h2>Please check your email.</h2>
+                            <?php endif; ?>
 
                         </div>
                     </div>
