@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
-    if(!check_method('GET') && isset($_GET['forgot'])){
+    if(!isset($_GET['forgot'])){
         redirect('index');
     }
 
@@ -47,7 +47,9 @@ use PHPMailer\PHPMailer\Exception;
                     $mail->setFrom('kevin.m.guertin@gmail.com', 'Kevin');
                     $mail->addAddress($email);
                     $mail->Subject = "This is a test email.";
-                    $mail->Body = '<h1>Email Body</h1>';
+                    $mail->Body = "<p>Click to reset Password
+                        <a href='http://localhost/php-courses/php-basics/cms_project/reset.php?email=" . $email . "&token=" . $token . "'>Click Here</a>
+                        </p>";
 
 
                     if($mail->send()){

@@ -46,7 +46,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <a href="forgot_password.php?id=<?php echo uniqid(true) ?>t<">Forgot Password</a>
+                            <a href="forgot_password.php?forgot=<?php echo uniqid(true) ?>t<">Forgot Password</a>
                         </div>
                     </form> <!-- Search Form -->
                 <?php endif; ?>
