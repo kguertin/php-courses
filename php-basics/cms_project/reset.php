@@ -4,7 +4,8 @@
     if(!isset($_GET['email']) && !isset($_GET['token'])){
         // redirect('index');
     }
-    
+
+    $email = "kevin.m.guertin@gmail.com";
     $token = '35671ae23fea8f5ad8dbcc1bdcc36fd51df257292da048d608d78f186cd8e31ad795b1bd3553a2598edca488f2a808a3f6f7';
     
     if($stmt = mysqli_prepare($connection, "SELECT username, user_email, token FROM users where token = ?")){
@@ -17,6 +18,25 @@
         // if($_GET['token'] !== $token || $_GET['email'] !== $email){
         //     redirect('index');
         // }
+
+        if(isset($_POST['password']) && isset($_POST['confirmPassword'])){
+            if($_POST['password'] ===  $_POST['confirmPassword']){
+                $password = $_POST['password'];
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT, array('cost'=>12));
+
+                if($stmt = mysqli_prepare($connection, "UPDATE users SET token = '', user_password= '{$hashed_password}' WHERE user_email = ?")){
+                    mysqli_stmt_bind_param($stmt, "s", $email);
+                    mysqli_stmt_execute($stmt);
+
+                    if(mysqli_stmt_affected_rows($stmt) >= 1){
+
+                        echo "It Worked!";
+                    }
+                } else {
+                    echo 'Bad Query';
+                }
+            }
+        }
     }
     ?>
 
