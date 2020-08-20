@@ -14,7 +14,7 @@
             if(isset($_GET['category'])){
                 $post_category_id = $_GET['category'];
 
-                if(is_admin($_SESSION['username'])) {
+                if(is_logged_in() && is_admin($_SESSION['username'])) {
                     $stmt1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ? ");
 
                 } else {
