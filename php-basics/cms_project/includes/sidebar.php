@@ -1,10 +1,12 @@
           <?php
             if(check_method('POST')){
-                if(isset($_POST['username']) && isset($_POST['password'])){
-                    login_user($_POST['username'], $_POST['password']);
-                  } else {
-                    redirect('/php-courses/php-basics/cms_project/login.php');
-                  }
+                if(isset($_POST['login'])){
+                    if(isset($_POST['username']) && isset($_POST['password'])){
+                        login_user($_POST['username'], $_POST['password']);
+                      } else {
+                        redirect('/php-courses/php-basics/cms_project/login.php');
+                      }
+                }
             }
           ?>
           
@@ -14,7 +16,7 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <form action="search.php" method="POST">
+                    <form action="/php-courses/php-basics/cms_project/search.php" method="POST">
                         <div class="input-group">
                             <input name="search" type="text" class="form-control">
                             <span class="input-group-btn">
