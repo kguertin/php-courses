@@ -55,7 +55,7 @@
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date; ?></p>
                         <hr>
-                        <img class="img-responsive" src="/php-courses/php-basics/cms_project/images/<?php echo $post_image; ?>" alt="">
+                        <img class="img-responsive" src="/php-courses/php-basics/cms_project/images/<?php echo placeholder_image($post_image); ?>" alt="">
                         <hr>
                         <p><?php echo $post_content; ?></p>
 

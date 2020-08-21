@@ -242,7 +242,6 @@ function login_user($username, $password){
             $_SESSION['username'] = $db_username;
             $_SESSION['first_name'] = $db_first_name;
             $_SESSION['last_name'] = $db_last_name;
-            
             $_SESSION['user_role'] = $db_user_role;
             redirect('/php-courses/php-basics/cms_project/admin'); 
         } else {
@@ -250,4 +249,12 @@ function login_user($username, $password){
         }
     }
     return true;
+}
+
+function placeholder_image($image = null) {
+    if(!$image){
+        return 'placeholder.jpg';
+    } else {
+        return $image;
+    }
 }
