@@ -4,7 +4,15 @@
 <?php include "includes/navigation.php"; ?>
 <?php
     if(isset($_POST['liked'])){
-        echo "<h1>IT WORKS</h1>";
+        $liked_post = $_POST['post_id'];
+        $find_post = "SELECT * FROM posts where post_id = {$liked_post}";
+        $post_result = mysqli_query($connection, $find_post);
+        $post = mysqli_fetch_array($post_result);
+        $likes = $post['post_likes'];
+
+        if(mysqli_num_rows($post_result) >= 1){
+            echo $post['post_id'];
+        }
     }
 
 ?>
