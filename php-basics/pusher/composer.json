@@ -1,0 +1,13 @@
+{
+    "name": "kevin/pusher",
+    "description": "",
+    "authors": [
+        {
+            "name": "Kevin Guertin",
+            "email": "32689269+kguertin@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "pusher/pusher-php-server": "^4.1"
+    }
+}
