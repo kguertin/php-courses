@@ -2,6 +2,12 @@
 <?php include "includes/header.php"; ?>
     <!-- Navigation -->
 <?php include "includes/navigation.php"; ?>
+<?php
+    if(isset($_POST['liked'])){
+        echo "<h1>IT WORKS</h1>";
+    }
+
+?>
 
     <!-- Page Content -->
     <div class="container">
@@ -162,8 +168,20 @@
 
 <script>
     $(document).ready(function(){
+
+        const post_id = <?php echo $post_id ?>;
+        const user_id = 6;
+
         $('.like').click(function(){
-            console.log('success!');
+            $.ajax({
+                url: "/php-courses/php-basics/cms_project/post.php?p_id=<?php echo $post_id; ?>",
+                type: "POST",
+                data: {
+                    liked: 1,
+                    post_id: post_id,
+                    user_id: user_id,
+                }
+            })
         })
     })
 </script>
