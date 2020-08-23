@@ -8,6 +8,12 @@ function confirm_query($result) {
     }
 }
 
+function query($query){
+    global $connection;
+
+    return mysqli_query($connection, $query);
+}
+
 function users_online() {
 
     if(isset($_GET['online_users'])){
@@ -249,6 +255,20 @@ function login_user($username, $password){
         }
     }
     return true;
+}
+
+function get_user_id() {
+    if(is_logged_in()){
+        $result = query("SELECT * FROM users WHERE username ='" . $_SESSION['username'] . "'"); 
+        $user= mysqli_fetch_array($result);
+
+        if(mysqli_num_rows($result) >= 1){
+            return $user["user_id"];
+        }
+
+    }
+
+    return false;
 }
 
 function placeholder_image($image = null) {
