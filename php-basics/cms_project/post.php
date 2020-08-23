@@ -92,10 +92,11 @@
                         <p><?php echo $post_content; ?></p>
 
                         <hr>
-
+                        <?php if(is_logged_in()): ?>
                         <div class="row">
                             <p class="pull-right"><a class="<?php echo check_user_liked($post_id) ? 'unlike' : 'like';  ?>" href=""><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo check_user_liked($post_id) ? ' Unlike' : ' Like';  ?></a></p>
                         </div>
+                        <?php endif; ?>
                         <div class="row">
                             <p class="pull-right">Likes: <?php get_post_likes($post_id) ?></p>
                         </div>
@@ -194,7 +195,7 @@
     $(document).ready(function(){
 
         const post_id = <?php echo $post_id ?>;
-        const user_id = 6;
+        const user_id = <?php echo get_user_id(); ?>;
 
         $('.like').click(function(){
             $.ajax({
