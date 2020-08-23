@@ -12,9 +12,24 @@
         $post = mysqli_fetch_array($post_result);
         $likes = $post['post_likes'];
 
-        mysqli_query($connection, "UPDATE posts SET post_likes = $likes+1 WHERE post_id = $liked_post ");
+        mysqli_query($connection, "UPDATE posts SET post_likes = $likes + 1 WHERE post_id = $liked_post ");
 
         mysqli_query($connection, "INSERT INTO likes(user_id, post_id) VALUES ($user_id, $liked_post)");
+        exit();
+    }
+
+    if(isset($_POST['unliked'])){
+        $unliked_post = $_POST['post_id'];
+        $user_id = $_POST['user_id'];
+
+        $find_post = "SELECT * FROM posts where post_id = {$unliked_post}";
+        $post_result = mysqli_query($connection, $find_post);
+        $post = mysqli_fetch_array($post_result);
+        $likes = $post['post_likes'];
+
+        mysqli_query($connection, "UPDATE posts SET post_likes = $likes - 1 WHERE post_id = $unliked_post ");
+
+        mysqli_query($connection, "DELETE FROM likes WHERE post_id = $unliked_post AND user_id = $user_id ");
         exit();
     }
 
@@ -80,6 +95,9 @@
 
                         <div class="row">
                             <p class="pull-right"><a class="like" href="#"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a></p>
+                        </div>
+                        <div class="row">
+                            <p class="pull-right"><a class="unlike" href="#"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a></p>
                         </div>
                         <div class="row">
                             <p class="pull-right">Likes: 10</p>
@@ -189,6 +207,19 @@
                 type: "POST",
                 data: {
                     liked: 1,
+                    post_id: post_id,
+                    user_id: user_id,
+                }
+            })
+        })
+
+
+        $('.unlike').click(function(){
+            $.ajax({
+                url: "/php-courses/php-basics/cms_project/post.php?p_id=<?php echo $post_id; ?>",
+                type: "POST",
+                data: {
+                    unliked: 1,
                     post_id: post_id,
                     user_id: user_id,
                 }
