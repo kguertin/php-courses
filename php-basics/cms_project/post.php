@@ -65,12 +65,12 @@
                             echo "<h1 class='text-center'>No Post Found</h1>";
                         } else {
 
-                        while($row = mysqli_fetch_assoc($select_all_posts)){
-                            $post_title = $row["post_title"];
-                            $post_author = $row["post_user"];
-                            $post_date = $row["post_date"];
-                            $post_image = $row["post_image"];
-                            $post_content = $row["post_content"];
+                        $post_data = mysqli_fetch_assoc($select_all_posts);
+                        $post_title = $post_data["post_title"];
+                        $post_author = $post_data["post_user"];
+                        $post_date = $post_data["post_date"];
+                        $post_image = $post_data["post_image"];
+                        $post_content = $post_data["post_content"];
 
                             ?>
 
@@ -94,18 +94,13 @@
                         <hr>
 
                         <div class="row">
-                            <p class="pull-right"><a class="like" href="#"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a></p>
-                        </div>
-                        <div class="row">
-                            <p class="pull-right"><a class="unlike" href="#"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a></p>
+                            <p class="pull-right"><a class="<?php echo check_user_liked($post_id) ? 'unlike' : 'like';  ?>" href=""><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo check_user_liked($post_id) ? ' Unlike' : ' Like';  ?></a></p>
                         </div>
                         <div class="row">
                             <p class="pull-right">Likes: 10</p>
                         </div>
 
                         <div class="clearfix"></div>
-
-            <?php } ?>
 
             <?php
                 if(isset($_POST["create_comment"])){
