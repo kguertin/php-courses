@@ -260,15 +260,17 @@ function login_user($username, $password){
 function get_user_id() {
     if(is_logged_in()){
         $result = query("SELECT * FROM users WHERE username ='" . $_SESSION['username'] . "'"); 
-        $user= mysqli_fetch_array($result);
+        $user = mysqli_fetch_array($result);
 
-        if(mysqli_num_rows($result) >= 1){
-            return $user["user_id"];
-        }
-
+        return mysqli_num_rows($result) >= 1 ? $user['user_id'] : false;
     }
 
     return false;
+}
+
+function check_user_liked($post_id = ''){
+    $result = query("SELECT * FROM likes where user_id = " . get_user_id() . " AND post_id = {$post_id}");
+    return mysqli_num_rows($result) >= 1 ? true : false;
 }
 
 function placeholder_image($image = null) {
