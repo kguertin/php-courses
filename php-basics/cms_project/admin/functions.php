@@ -275,6 +275,12 @@ function check_user_liked($post_id = ''){
     return mysqli_num_rows($result) >= 1 ? true : false;
 }
 
+function get_post_likes($post_id){
+    $result = query("SELECT * FROM likes WHERE post_id = $post_id");
+    confirm_query($result);
+    echo mysqli_num_rows($result);
+}
+
 function placeholder_image($image = null) {
     if(!$image){
         return 'placeholder.jpg';

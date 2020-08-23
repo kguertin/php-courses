@@ -97,7 +97,7 @@
                             <p class="pull-right"><a class="<?php echo check_user_liked($post_id) ? 'unlike' : 'like';  ?>" href=""><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo check_user_liked($post_id) ? ' Unlike' : ' Like';  ?></a></p>
                         </div>
                         <div class="row">
-                            <p class="pull-right">Likes: 10</p>
+                            <p class="pull-right">Likes: <?php get_post_likes($post_id) ?></p>
                         </div>
 
                         <div class="clearfix"></div>
