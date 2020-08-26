@@ -7,7 +7,8 @@
             Admin
             <small>Subheading</small>
             <?php 
-
+                $user = User::find_user_by_id(5);
+                $user->delete();
             ?>
         </h1>
         <ol class="breadcrumb">
