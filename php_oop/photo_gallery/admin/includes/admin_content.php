@@ -7,8 +7,16 @@
             Admin
             <small>Subheading</small>
             <?php 
-                $user = User::find_user_by_id(5);
-                $user->delete();
+                $user = User::find_user_by_id(4);
+                $user->username = 'changed';
+                $user->save();
+
+                $user2 = new User();
+                $user2->username = 'yeep';
+                $user2->user_password = 'yip';
+                $user2->user_first_name = 'al';
+                $user2->user_last_name = 'bert';
+                $user2->save();
             ?>
         </h1>
         <ol class="breadcrumb">
