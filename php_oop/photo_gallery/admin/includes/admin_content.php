@@ -7,6 +7,15 @@
             Admin
             <small>Subheading</small>
             <?php 
+
+            $test = new User();
+            $test->username = 'pestering';
+            $test->user_first_name = 'Kevin';
+            $test->user_last_name = 'Test';
+            $test->user_password = 123;
+
+            $test->create();
+            echo $test->user_id
             ?>
         </h1>
         <ol class="breadcrumb">

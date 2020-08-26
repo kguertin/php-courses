@@ -24,6 +24,10 @@ class Database {
         return $result;
     }
 
+    public function insert_id(){
+        return mysqli_insert_id($this->connection);
+    }
+
     private function confirm_query($query){
         if(!$query){
             die('Query Failed ' . $this->connection->error);

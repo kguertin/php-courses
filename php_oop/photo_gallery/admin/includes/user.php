@@ -74,7 +74,7 @@ class User {
         $sql .= $db->escape_string($this->user_last_name) . "')";
 
         if($db->query($sql)){
-            $this->id = $db->insert_id;
+            $this->user_id = $db->insert_id();
             return true;
         } else {
             return false;
@@ -82,3 +82,4 @@ class User {
     }
 
 }
+

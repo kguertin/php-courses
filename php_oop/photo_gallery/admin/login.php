@@ -20,7 +20,7 @@ if(isset($_POST["submit"])){
         $error_message = "Your password or username is incorrect";
     }
 } else {
-    $error_message = '';
+    $error_message = "";
     $username = "";
     $password = "";
 }
