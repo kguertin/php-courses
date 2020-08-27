@@ -76,11 +76,23 @@ class User {
         return $properties;
     }
 
+    protected function escaped_properties() {
+        global $db;
+
+        $escaped_properties = array();
+
+        foreach($this->properties() as $key => $value){
+            $escaped_properties[$key] =  $db->escape_string($value);
+        }
+
+        return $escaped_properties;
+    }
+
     
     public function create() {
         global $db;
 
-        $properties = $this->properties();
+        $properties = $this->escaped_properties();
         
         $sql = "INSERT INTO " . self::$db_table . " (" . implode(",", array_keys($properties)) . ") ";
         $sql .= "VALUES('" . implode("','", array_values($properties)) . "')";
@@ -95,7 +107,7 @@ class User {
     
     public function update(){
         global $db;
-        $properties = $this->properties();
+        $properties = $this->escaped_properties();
         $key_and_value = array();
 
         foreach($properties as $key => $value){

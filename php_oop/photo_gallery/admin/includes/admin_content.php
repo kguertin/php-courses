@@ -16,7 +16,7 @@
             // $user->save();
 
             $user = User::find_user_by_id(1);
-            $user->username = 'anewusername';
+            $user->username = 'sneepo';
             $user->save();
             ?>
         </h1>
