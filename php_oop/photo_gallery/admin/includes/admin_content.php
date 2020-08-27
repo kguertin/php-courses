@@ -15,8 +15,9 @@
 
             // $user->save();
 
-            $user = User::find_user_by_id(11);
-            $user->delete()
+            $user = User::find_user_by_id(1);
+            $user->username = 'anewusername';
+            $user->save();
             ?>
         </h1>
         <ol class="breadcrumb">

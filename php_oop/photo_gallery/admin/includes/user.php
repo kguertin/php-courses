@@ -95,12 +95,15 @@ class User {
     
     public function update(){
         global $db;
+        $properties = $this->properties();
+        $key_and_value = array();
+
+        foreach($properties as $key => $value){
+            $key_and_value[] = "{$key}='{$value}'";
+        }
         
         $sql = "UPDATE " . self::$db_table . " SET ";
-        $sql .= "username = '" . $db->escape_string($this->username) . "', ";
-        $sql .= "user_password = '" . $db->escape_string($this->user_password) . "', ";
-        $sql .= "user_first_name = '" . $db->escape_string($this->user_first_name) . "', ";
-        $sql .= "user_last_name = '" . $db->escape_string($this->user_last_name) . "' ";
+        $sql .= implode(', ', $key_and_value);
         $sql .= "WHERE id= " . $db->escape_string($this->id);
         
         $db->query($sql);
