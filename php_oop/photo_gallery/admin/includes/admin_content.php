@@ -18,6 +18,10 @@
             // $user = User::find_by_id(3);
             // $user->username = 'meepo';
             // $user->save();
+
+            // $photo = new Photo();
+            // $photo->photo_title = 'test';
+            // $photo->save();
             ?>
         </h1>
         <ol class="breadcrumb">
