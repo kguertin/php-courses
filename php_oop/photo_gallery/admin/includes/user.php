@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class User extends Db_object{
 
     protected static $db_table = "users";
     protected static $db_table_fields = array('username', 'user_password', "user_first_name", "user_last_name");
@@ -10,31 +10,6 @@ class User {
     public $user_first_name;
     public $user_last_name;
 
-
-    public static function find_all(){   
-        return self::submit_query("SELECT * FROM " . self::$db_table . " ");
-    }
-
-    public static function find_by_id($id){
-        global $db;
-
-        $get_user = self::submit_query("SELECT * FROM " . self::$db_table . " WHERE id = {$id} LIMIT 1");
-
-        return !empty($get_user) ? array_shift($get_user) : false;
-    }
-
-    public static function submit_query($sql){
-        global $db;
-
-        $result = $db->query($sql);
-
-        $obj_array = array();
-
-        while($row = mysqli_fetch_array($result)){
-            $obj_array[] = self::instantiation($row);
-        }
-        return $obj_array;
-    }
 
     public static function verify_user($username, $password){
         global $db;
@@ -46,23 +21,6 @@ class User {
         $get_user = self::submit_query($sql);
 
         return !empty($get_user) ? array_shift($get_user) : false;
-    }
-
-    public static function instantiation($user_data){
-        $obj = new self;
-
-        foreach($user_data as $attribute => $value){
-            if($obj->has_attribute($attribute)){
-                $obj->$attribute = $value;
-            };
-        }
-
-        return $obj;
-    } 
-    
-    private function has_attribute($attribute){
-        $obj_properties = get_object_vars($this);
-        return array_key_exists($attribute, $obj_properties);
     }
 
     protected function properties() {

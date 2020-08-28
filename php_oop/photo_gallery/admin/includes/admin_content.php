@@ -15,9 +15,15 @@
 
             // $user->save();
 
-            $user = User::find_by_id(1);
-            $user->username = 'sneepo';
-            $user->save();
+            // $user = User::find_by_id(1);
+            // $user->username = 'sneepo';
+            // $user->save();
+
+            $users = User::find_all();
+
+            foreach($users as $user){
+                echo $user->username;
+            }
             ?>
         </h1>
         <ol class="breadcrumb">
