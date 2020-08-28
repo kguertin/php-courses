@@ -11,14 +11,14 @@ class User {
     public $user_last_name;
 
 
-    public static function find_all_users(){   
-        return self::submit_query("SELECT * FROM users");
+    public static function find_all(){   
+        return self::submit_query("SELECT * FROM " . self::$db_table . " ");
     }
 
-    public static function find_user_by_id($id){
+    public static function find_by_id($id){
         global $db;
 
-        $get_user = self::submit_query("SELECT * FROM users WHERE id = {$id} LIMIT 1");
+        $get_user = self::submit_query("SELECT * FROM " . self::$db_table . " WHERE id = {$id} LIMIT 1");
 
         return !empty($get_user) ? array_shift($get_user) : false;
     }
@@ -42,7 +42,7 @@ class User {
         $username = $db->escape_string($username);
         $password = $db->escape_string($password);
 
-        $sql = "SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}' LIMIT 1 ";
+        $sql = "SELECT * FROM " . self::$db_table ." WHERE username = '{$username}' AND user_password = '{$password}' LIMIT 1 ";
         $get_user = self::submit_query($sql);
 
         return !empty($get_user) ? array_shift($get_user) : false;
