@@ -12,7 +12,7 @@ class Photo extends Db_object {
 
     public $tmp_path;
     public $upload_directory = "images";
-    
+
     public $custom_err = array();
     public $upload_error_arr = array(
         UPLOAD_ERR_OK => "There is no error.",
@@ -25,6 +25,5 @@ class Photo extends Db_object {
         UPLOAD_ERR_EXTENSION => "A PHP extension  stopped the file upload."
     );
 
-
-
+    
 }
