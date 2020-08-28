@@ -8,22 +8,16 @@
             <small>Subheading</small>
             <?php 
             // $user = new User();
-            // $user->username = 'test';
-            // $user->user_password = 'pass';
-            // $user->user_first_name = 'john';
+            // $user->username = 'newuser';
+            // $user->user_password = 'password';
+            // $user->user_first_name = 'richard';
             // $user->user_last_name = 'son';
 
             // $user->save();
 
-            // $user = User::find_by_id(1);
-            // $user->username = 'sneepo';
+            // $user = User::find_by_id(3);
+            // $user->username = 'meepo';
             // $user->save();
-
-            $users = User::find_all();
-
-            foreach($users as $user){
-                echo $user->username;
-            }
             ?>
         </h1>
         <ol class="breadcrumb">
