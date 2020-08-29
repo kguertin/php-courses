@@ -22,9 +22,6 @@
             // $photo = new Photo();
             // $photo->photo_title = 'test';
             // $photo->save();
-            echo SITE_ROOT;
-            echo INCLUDES_PATH;
-
             ?>
         </h1>
         <ol class="breadcrumb">
