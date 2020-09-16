@@ -38,7 +38,13 @@
                             <?php 
                                 foreach($photos as $photo): ?>
                                     <tr>
-                                        <td><img src="<?php echo $photo->photo_path(); ?>" alt="An image"></td>
+                                        <td>
+                                            <img src="<?php echo $photo->photo_path(); ?>" alt="An image">
+                                            <div class="thumbnail_link">
+                                            <a href="delete_photo.php/?id=<?php echo $photo->id?>">Delete</a>
+                                            <a href="#">Edit</a>
+                                            <a href="#">View</a></div>
+                                        </td>
                                         <td><?php echo $photo->id; ?></td>
                                         <td><?php echo  $photo->file_name; ?></td>
                                         <td><?php echo  $photo->title; ?></td>
