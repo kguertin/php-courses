@@ -77,4 +77,13 @@ class Photo extends Db_object
             }
         }
     }
+
+    public function delete_photo(){
+        if($this->delete()) {
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->photo_path();
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
+        }
+    }
 }

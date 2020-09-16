@@ -22,6 +22,9 @@
             // $photo = new Photo();
             // $photo->photo_title = 'test';
             // $photo->save();
+
+            // $photo = Photo::find_by_id(4);
+            // echo $photo->title;
             ?>
         </h1>
         <ol class="breadcrumb">
