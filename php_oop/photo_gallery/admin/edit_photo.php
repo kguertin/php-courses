@@ -14,6 +14,8 @@ if(isset($_POST['update'])){
         $photo->caption = $_POST['caption'];
         $photo->alt_text = $_POST['alt-text'];
         $photo->description = $_POST['description'];
+
+        $photo->save();
         
     }
 }
@@ -38,22 +40,22 @@ if(isset($_POST['update'])){
                     Photos
                     <small>Subheading</small>
                 </h1>
-                <form action="edit_photo.php" method="POST">
+                <form action="" method="POST">
                 <div class="col-md-8">
                         <div class="form-group">
                             <input type="text" name="title" class="form-control" value="<?php echo $photo->title ?>">
                         </div>
                         <div class="form-group">
                             <label for="caption">Caption</label>
-                            <input type="text" name="caption" class="form-control">
+                            <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption ?>">
                         </div>
                         <div class="form-group">
                             <label for="alt-text">Alternate Text</label>
-                            <input type="text" name="alt-text" class="form-control">
+                            <input type="text" name="alt-text" class="form-control" value="<?php echo $photo->alt_text ?>"> 
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class='form-control' name="description" id="" cols="30" rows="10"></textarea>
+                            <textarea class='form-control' name="description" id="" cols="30" rows="10"><?php echo $photo->description ?></textarea>
                         </div>
                 </div>
             
@@ -85,7 +87,7 @@ if(isset($_POST['update'])){
                                     <a  href="delete_photo.php?id=<?php echo $photo->id; ?>" class="btn btn-danger btn-lg ">Delete</a>   
                                 </div>
                                 <div class="info-box-update pull-right ">
-                                    <input type="submit" name="update" value="Update" class="btn btn-primary btn-lg ">
+                                    <input type="submit" name="update" value="update" class="btn btn-primary btn-lg ">
                                 </div>   
                               </div>
                             </div>          
