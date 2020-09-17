@@ -3,12 +3,12 @@
 class User extends Db_object{
 
     protected static $db_table = "users";
-    protected static $db_table_fields = array('username', 'user_password', "user_first_name", "user_last_name");
+    protected static $db_table_fields = array('username', 'user_password', "first_name", "last_name");
     public $id;
     public $username;
     public $user_password;
-    public $user_first_name;
-    public $user_last_name;
+    public $first_name;
+    public $last_name;
 
     public static function verify_user($username, $password){
         global $db;
