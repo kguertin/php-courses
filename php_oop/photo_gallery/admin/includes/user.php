@@ -29,5 +29,14 @@ class User extends Db_object{
         return empty($this->image) ? $this->image_placeholder : $this->upload_dir.DS.$this->image;
     }
 
+    public function delete_user () {
+        if($this->delete()){
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory. DS . $this->image;
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
+        }
+    }
+
 }
 
