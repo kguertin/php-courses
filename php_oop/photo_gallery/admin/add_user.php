@@ -1,19 +1,18 @@
 <?php include("includes/header.php"); ?>
 <?php if(!$session->is_signed_in()) {redirect('login.php'); } ?>
 <?php
-    // $user = User::find_by_id($_GET['id']);
+
+    $user = new User();
 
     if(isset($_POST['create'])){
-        echo "Hello";
-    //     if($user){
-    //         $user ->title = $_POST['title'];
-    //         $user->caption = $_POST['caption'];
-    //         $user->alt_text = $_POST['alt-text'];
-    //         $user->description = $_POST['description'];
-    
-    //         $user->save();
+        if($user){
+
+           echo $user->username = $_POST['username'];
+            $user->first_name = $_POST['first_name'];
+            $user->last_name = $_POST['last_name'];
+            $user->password = $_POST['password'];
             
-    //     }
+        }
     }
 
 ?>
@@ -39,25 +38,28 @@
                 </h1>
                 <form action="" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6 col-md-offset-3">
-                        <div class="form-group">'
-                            <label for="username">Username</label>
-                            <input type="text" name="username" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" name="first_name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" name="last_name" class="form-control"> 
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="text" name="password" class="form-control"> 
-                        </div>
-                        <div class="form">
-                            <input type="submit" name="create" class="btn btn-primary pull-right" value="Submit">
-                        </div>
+                    <div class="form-group">
+                        <input type="file" name="user_img">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" class="form-control"> 
+                    </div>
+                    <input type="submit" name="create" class="btn btn-primary pull-right" value="Submit">
+                    <div class="form">
+                    </div>
                 </div>
                     </form>
                 </div>
