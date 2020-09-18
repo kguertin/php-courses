@@ -39,7 +39,7 @@
                                 foreach($users as $user): ?>
                                     <tr>
                                         <td><?php echo $user->id; ?></td>
-                                        <td><img class="admin-user-thumbnail" src="<?php echo $user->user_image; ?>" alt="An image"></td>
+                                        <td><img class="admin-user-thumbnail user-image" src="<?php echo $user->get_image(); ?>" alt="An image"></td>
                                         <td>
                                             <?php echo  $user->username; ?>
                                             <div class="action_links">

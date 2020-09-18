@@ -9,7 +9,7 @@
             <?php 
             // $user = new User();
             // $user->username = 'newuser';
-            // $user->user_password = 'password';
+            // $user->password = 'password';
             // $user->user_first_name = 'richard';
             // $user->user_last_name = 'son';
 
