@@ -3,7 +3,8 @@
 <?php
     // $user = User::find_by_id($_GET['id']);
 
-    // if(isset($_POST['update'])){
+    if(isset($_POST['create'])){
+        echo "Hello";
     //     if($user){
     //         $user ->title = $_POST['title'];
     //         $user->caption = $_POST['caption'];
@@ -13,7 +14,7 @@
     //         $user->save();
             
     //     }
-    // }
+    }
 
 ?>
 
@@ -37,7 +38,7 @@
                     <small>Subheading</small>
                 </h1>
                 <form action="" method="POST" enctype="multipart/form-data">
-                <div class="col-md-8">
+                <div class="col-md-6 col-md-offset-3">
                         <div class="form-group">'
                             <label for="username">Username</label>
                             <input type="text" name="username" class="form-control">
@@ -53,6 +54,9 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="text" name="password" class="form-control"> 
+                        </div>
+                        <div class="form">
+                            <input type="submit" name="create" class="btn btn-primary pull-right" value="Submit">
                         </div>
                 </div>
                     </form>
