@@ -11,6 +11,10 @@
             $user->first_name = $_POST['first_name'];
             $user->last_name = $_POST['last_name'];
             $user->password = $_POST['password'];
+
+            $user->set_file($_FILES['user_img']);
+
+            $user->save_user();
             
         }
     }
@@ -55,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" name="password" class="form-control"> 
+                        <input type="password" name="password" class="form-control"> 
                     </div>
                     <input type="submit" name="create" class="btn btn-primary pull-right" value="Submit">
                     <div class="form">
