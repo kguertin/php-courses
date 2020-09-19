@@ -2,9 +2,13 @@
 <?php if(!$session->is_signed_in()) {redirect('login.php'); } ?>
 <?php
 
-    $user = new User();
+    if(empty($_GET['id'])){
+        redirect('users.php');
+    } else {
+        $user = User::find_by_id($_GET['id']);
+    }
 
-    if(isset($_POST['create'])){
+    if(isset($_POST['update'])){
         if($user){
 
             $user->username = $_POST['username'];
@@ -61,7 +65,7 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control"> 
                     </div>
-                    <input type="submit" name="create" class="btn btn-primary pull-right" value="Submit">
+                    <input type="submit" name="update" class="btn btn-primary pull-right" value="Submit">
                     <div class="form">
                     </div>
                 </div>
