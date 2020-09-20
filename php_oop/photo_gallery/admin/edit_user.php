@@ -14,14 +14,17 @@
             $user->username = $_POST['username'];
             $user->first_name = $_POST['first_name'];
             $user->last_name = $_POST['last_name'];
+            $user->password = $_POST['password'];
 
-            if($_POST['password'] !== ''){
-                $user->password = $_POST['password'];
+            if(empty($_FILES['user_img'])){
+                $user->save();
+            } else {
+                $user->set_file($_FILES['user_img']);
+                $user->save_user();
+                $user->save();
+
+                redirect("edit_user.php?id={$user->id}");
             }
-
-            $user->set_file($_FILES['user_img']);
-
-            $user->save_user();
             
         }
     }
@@ -66,8 +69,9 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control"> 
+                        <input type="password" name="password" class="form-control" value="<?php echo $user->password ?>"> 
                     </div>
+                    <a href="delete_user.php?id=<?php echo $user->id; ?>" class="btn btn-danger">Delete</a>
                     <input type="submit" name="update" class="btn btn-primary pull-right" value="Update">
                     <div class="form">
                     </div>

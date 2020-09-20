@@ -46,34 +46,30 @@ class User extends Db_object{
     }
 
      public function save_user(){
-        if($this->id){
-            $this->update();
+        if(!empty($this->errors)){
+            return false;
+        }
+
+        if(empty($this->image) || empty($this->tmp_path)){
+            $this->errors[] = "The file was not available";
+            return false;
+        }
+
+        $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->image;
+
+        if(file_exists($target_path)){
+            $this->errors[] = "The file {$this->image} already exists";
+            return false;
+        }
+
+        if(move_uploaded_file($this->tmp_path, $target_path)){
+            if($this->create()){
+                unset($this->tmp_path);
+                return true;
+            }
         } else {
-            if(!empty($this->errors)){
-                return false;
-            }
-
-            if(empty($this->image) || empty($this->tmp_path)){
-                $this->errors[] = "The file was not available";
-                return false;
-            }
-
-            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->image;
-
-            if(file_exists($target_path)){
-                $this->errors[] = "The file {$this->image} already exists";
-                return false;
-            }
-
-            if(move_uploaded_file($this->tmp_path, $target_path)){
-                if($this->create()){
-                    unset($this->tmp_path);
-                    return true;
-                }
-            } else {
-                $this->errors[] = "The file directory may not have the right permissions";
-                return false;
-            }
+            $this->errors[] = "The file directory may not have the right permissions";
+            return false;
         }
     }
 
