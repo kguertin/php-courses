@@ -45,31 +45,34 @@
                     <small>Subheading</small>
                 </h1>
                 <form action="" method="POST" enctype="multipart/form-data">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6">
                     <div class="form-group">
                         <input type="file" name="user_img">
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="username" class="form-control">
+                        <input type="text" name="username" class="form-control" value="<?php echo $user->username ?>">
                     </div>
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" class="form-control">
+                        <input type="text" name="first_name" class="form-control" value="<?php echo $user->first_name ?>">
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" class="form-control"> 
+                        <input type="text" name="last_name" class="form-control" value="<?php echo $user->last_name ?>"> 
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control"> 
                     </div>
-                    <input type="submit" name="update" class="btn btn-primary pull-right" value="Submit">
+                    <input type="submit" name="update" class="btn btn-primary pull-right" value="Update">
                     <div class="form">
                     </div>
                 </div>
-                    </form>
+                </form>
+                <div class="col-md-6">
+                    <img class="img-responsive" src="<?php echo $user->get_image(); ?>" alt="">
+                </div>
                 </div>
         </div>
         <!-- /.row -->
