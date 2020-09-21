@@ -1,7 +1,13 @@
 <?php include("includes/header.php"); ?>
 <?php if(!$session->is_signed_in()) {redirect('login.php'); } ?>
 <?php
-    $photos = Photo::find_all();
+    if(empty($_GET['id'])){
+        redirect('photos.php');
+    }
+
+    $comments = Comment::find_comments($_GET['id']);
+
+
 ?>
 
         <!-- Navigation -->
@@ -19,37 +25,29 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    Photos
-                    <small>Subheading</small>
-                </h1>
+                <h1 class="page-header">Comments</h1>
+                <a class="btn btn-primary" href="add_user.php">Add User</a>
                 <div class="col-md-12">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Photo</th>
                                 <th>ID</th>
-                                <th>File Name</th>
-                                <th>Title</th>
-                                <th>Size</th>
+                                <th>Author</th>
+                                <th>Body</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
-                                foreach($photos as $photo): ?>
+                                foreach($comments as $comment): ?>
                                     <tr>
+                                        <td><?php echo $comment->id; ?></td>
                                         <td>
-                                            <img class="admin-photo-thumbnail" src="<?php echo $photo->photo_path(); ?>" alt="An image">
-                                            <div class="actions_link">
-                                                <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
-                                                <a href="edit_photo.php?id=<?php echo $photo->id; ?>">Edit</a>
-                                                <a href="../photo.php?id=<?php echo $photo->id; ?>">View</a>
+                                            <?php echo  $comment->author; ?>
+                                            <div class="action_links">
+                                                <a href="delete_comment.php?id=<?php echo $comment->id ?>">Delete</a>
                                             </div>
                                         </td>
-                                        <td><?php echo $photo->id; ?></td>
-                                        <td><?php echo  $photo->file_name; ?></td>
-                                        <td><?php echo  $photo->title; ?></td>
-                                        <td><?php echo  $photo->size; ?></td>
+                                        <td><?php echo  $comment->body ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                         </tbody>
