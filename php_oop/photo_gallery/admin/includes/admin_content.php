@@ -25,6 +25,8 @@
 
             // $photo = Photo::find_by_id(4);
             // echo $photo->title;
+
+            
             ?>
         </h1>
         <ol class="breadcrumb">
