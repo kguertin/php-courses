@@ -22,5 +22,12 @@ class Comment extends Db_object{
             return false;
         }
     }
+
+    public static function find_comments($photo_id) {
+        global $db;
+
+        $sql = 'SELECT * FROM ' . self::$db_table . ' WHERE photo_id = ' . $db->escape_string($photo_id) . " ORDER BY photo_id ASC";
+        return self::submit_query($sql);
+    }
 }
 
