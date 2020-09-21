@@ -8,8 +8,24 @@
     $photo = Photo::find_by_id($_GET['id']);
 
     if(isset($_POST['submit'])){
+        $author = trim($_POST['author']);
+        $body = trim($_POST['body']);
 
+        $new_comment = Comment::create_comment($photo->id, $author, $body);
+
+        if($new_comment && $new_comment->save()){
+            redirect("photo.php?id={$photo->id}");
+        } else {
+            $message = "There was some problems saving your comment";
+        }
+
+    } else {
+        $author = '';
+        $body = ''; 
     }
+
+    $comments = Comment::find_comments($photo->id);
+
 ?>
 
 <!DOCTYPE html>
@@ -133,7 +149,7 @@
                 <hr>
 
                 <!-- Posted Comments -->
-
+                <?php foreach ($comments as $comment): ?>
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
@@ -146,6 +162,7 @@
                         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
                 </div>
+                <?php endforeach; ?>
 
             </div>
 
