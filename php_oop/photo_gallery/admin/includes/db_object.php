@@ -129,4 +129,14 @@ class Db_object {
         $db->query($sql);
         return (mysqli_affected_rows($db->connection) == 1) ? true : false; 
     }
+
+    public static function count_all() {
+        global $db;
+
+        $sql = "SELECT COUNT(*) FROM " . static::$db_table;
+        $result_set = $db->query($sql);
+        $row = mysqli_fetch_array($result_set);
+
+        return array_shift($row);
+    }
 }
