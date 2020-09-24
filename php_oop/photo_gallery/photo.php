@@ -31,6 +31,7 @@
 <?php include("includes/header.php"); ?>
 
             <!-- Blog Post Content Column -->
+            <div class="row">
             <div class="col-lg-12">
 
                 <!-- Blog Post -->
@@ -93,6 +94,7 @@
                 </div>
                 <?php endforeach; ?>
 
+            </div>
             </div>
 
                         <!-- Blog Sidebar Widgets Column -->
