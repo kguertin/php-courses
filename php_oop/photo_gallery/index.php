@@ -4,7 +4,11 @@
     $items_per_page = 4;
     $total_items = Photo::count_all();
 
-    $photos = Photo::find_all(); 
+    $paginate = new Paginate($page, $items_per_page, $total_items);
+
+    $sql = "SELECT * FROM photos LIMIT {$items_per_page} OFFSET {$paginate->offset()}";
+    $photos = Photo::submit_query($sql);
+
 
 ?>
 
