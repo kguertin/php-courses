@@ -10,4 +10,16 @@ class Paginate {
         $this->items_per_page = (int)$items_per_page;
         $this->total_items = (int)$total_items;
     }
+
+    public function next() {
+        return $this->current_page + 1;
+    }
+
+    public function previous () {
+        return $this->current_page - 1; 
+    }
+    
+    public function page_total(){
+        return ceil($this->total_items / $this->items_per_page);
+    }
 }
