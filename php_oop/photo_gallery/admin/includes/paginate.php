@@ -28,10 +28,10 @@ class Paginate {
     }
 
     public function has_next () {
-        return $this->next() <= $this->page_total ? true : false;
+        return $this->next() <= $this->page_total() ? true : false;
     }
     
     public function offset() {
-        return ($this->current_page - 1) * $this-> items_per_page;
+        return ($this->current_page - 1) * $this->items_per_page;
     }
 }
