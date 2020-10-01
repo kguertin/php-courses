@@ -1,5 +1,5 @@
 <?php include("includes/header.php"); ?>
-<?php include('includes/photo_library_modal'); ?>
+<?php include('includes/photo_library_modal.php'); ?>
 <?php if(!$session->is_signed_in()) {redirect('login.php'); } ?>
 <?php
 
