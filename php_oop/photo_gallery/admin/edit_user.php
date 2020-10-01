@@ -19,12 +19,15 @@
 
             if(empty($_FILES['user_img'])){
                 $user->save();
+                $session->message('User has been updated');
+                redirect("users.php");
             } else {
                 $user->set_file($_FILES['user_img']);
                 $user->upload_user_image();
                 $user->save();
+                $session->message('User has been updated');
 
-                redirect("edit_user.php?id={$user->id}");
+                redirect("users.php");
             }
             
         }
@@ -53,8 +56,11 @@
                 <h1 class="page-header">
                     Photos
                 </h1>
+                <div class="col-md-3 user_image_box">
+                   <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->get_image(); ?>" alt=""></a>
+                </div>
                 <form action="" method="POST" enctype="multipart/form-data">
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="form-group">
                         <input type="file" name="user_img">
                     </div>
@@ -80,9 +86,7 @@
                     </div>
                 </div>
                 </form>
-                <div class="col-md-6 user_image_box">
-                   <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->get_image(); ?>" alt=""></a>
-                </div>
+         
                 </div>
         </div>
         <!-- /.row -->

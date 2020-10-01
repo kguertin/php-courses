@@ -20,6 +20,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Users</h1>
+                <p class="bg-success"><?php echo $session->message; ?></p>
                 <a class="btn btn-primary" href="add_user.php">Add User</a>
                 <div class="col-md-12">
                     <table class="table table-hover">
