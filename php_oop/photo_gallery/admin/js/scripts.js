@@ -12,8 +12,20 @@ $(document).ready(() => {
     image_src = $(e.currentTarget).attr("src");
     image_name = image_src.split("\\")[1]
 
-
   });
+
+  $('#set_user_image').click(() => {
+    $.ajax({
+      url: "includes/ajax_code.php",
+      data: {image_name: image_name, user_id: user_id},
+      type: 'POST',
+      success: (data) => {
+        if(!data.error){
+          alert(data)
+        }
+      }
+    })
+  })
 
 
   
