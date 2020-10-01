@@ -21,7 +21,7 @@ $(document).ready(() => {
       type: 'POST',
       success: (data) => {
         if(!data.error){
-          alert(data)
+          location.reload(true);
         }
       }
     })
