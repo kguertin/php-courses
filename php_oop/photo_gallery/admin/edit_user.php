@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 </form>
-                <div class="col-md-6">
+                <div class="col-md-6 user_image_box">
                    <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->get_image(); ?>" alt=""></a>
                 </div>
                 </div>
