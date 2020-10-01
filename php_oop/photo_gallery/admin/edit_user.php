@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include('includes/photo_library_modal'); ?>
 <?php if(!$session->is_signed_in()) {redirect('login.php'); } ?>
 <?php
 
@@ -31,6 +32,9 @@
 
 ?>
 
+
+
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,7 +52,6 @@
             <div class="col-lg-12">
                 <h1 class="page-header">
                     Photos
-                    <small>Subheading</small>
                 </h1>
                 <form action="" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6">
@@ -78,7 +81,7 @@
                 </div>
                 </form>
                 <div class="col-md-6">
-                    <img class="img-responsive" src="<?php echo $user->get_image(); ?>" alt="">
+                   <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->get_image(); ?>" alt=""></a>
                 </div>
                 </div>
         </div>
