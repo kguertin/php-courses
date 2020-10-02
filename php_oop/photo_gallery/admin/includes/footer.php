@@ -9,6 +9,7 @@
 
     <!-- WYSIWYG -->
     <script src="https://cdn.tiny.cloud/1/mqsw64c7klnpl2glvjpwcasbl489oz7pyjmdyasd1tb8bc7f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="./js/dropzone.js"></script>
     <script src="./js/scripts.js"></script>
 
     <script type="text/javascript">
