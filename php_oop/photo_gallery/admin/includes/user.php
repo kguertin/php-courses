@@ -87,5 +87,15 @@ class User extends Db_object{
         echo $this->get_image();
     }
 
+    
+    public function delete_user(){
+        if($this->delete()) {
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory. DS . $this->image;
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
+        }
+    }
+
 }
 
