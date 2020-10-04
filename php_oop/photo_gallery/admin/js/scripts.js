@@ -5,6 +5,14 @@ $(document).ready(() => {
   let image_name;
   let photo_id
 
+  // Edit Photo Dropdown
+  $('.info-box-header').click((() => {
+    $(".inside").slideToggle('fast');
+    $('#toggle').toggleClass("glyphicon-menu-down glyphicon , glyphicon-menu-up glyphicon")
+  }))
+
+  // Thumbnails
+
   $(".modal_thumbnails").click((e) => {
     $("#set_user_image").prop('disabled', false);
     user_href = $("#user-id").prop('href');
