@@ -42,7 +42,7 @@
                                         <td>
                                             <img class="admin-photo-thumbnail" src="<?php echo $photo->photo_path(); ?>" alt="An image">
                                             <div class="actions_link">
-                                                <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
+                                                <a class="delete-photo" href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
                                                 <a href="edit_photo.php?id=<?php echo $photo->id; ?>">Edit</a>
                                                 <a href="../photo.php?id=<?php echo $photo->id; ?>">View</a>
                                             </div>

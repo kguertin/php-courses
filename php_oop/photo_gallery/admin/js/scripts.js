@@ -11,6 +11,11 @@ $(document).ready(() => {
     $('#toggle').toggleClass("glyphicon-menu-down glyphicon , glyphicon-menu-up glyphicon")
   }))
 
+  // Delete Event 
+  $('.delete-photo').click(() => {
+    return confirm('Are you sure you want to delete this photo?')
+  })
+
   // Thumbnails
 
   $(".modal_thumbnails").click((e) => {
